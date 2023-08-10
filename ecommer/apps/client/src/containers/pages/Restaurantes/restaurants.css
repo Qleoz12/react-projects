@@ -1,0 +1,40 @@
+.swiper-container.swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  background-color: #ffffff;
+}
+
+:root {
+  --swiper-scrollbar-drag-bg-color: #ff0000;
+  --swiper-scrollbar-size: 1rem;
+}
+.swiper-slide {
+  bottom: 2rem;
+}
+
+.swiper {
+  bottom: 1.5rem;
+  border: 10rem;
+}
+
+/* .mapIcon {
+  filter: grayscale(10%);
+} */
+/* Estilos de los iconos del mapa */
+.cluster-icon-map {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  background-color: #cb261e;
+  transform: translate(-25%, -25%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+}
+
+.mapIcon {
+  background-color: transparent;
+}
