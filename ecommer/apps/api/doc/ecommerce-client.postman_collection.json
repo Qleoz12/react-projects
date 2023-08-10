@@ -1,0 +1,1542 @@
+{
+	"info": {
+		"_postman_id": "5c104815-dec9-4ac1-8149-a2befb3b56c0",
+		"name": "ecommerce-client",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25442685"
+	},
+	"item": [
+		{
+			"name": "TcpcLoginUsers",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"pruebA@gmail.com\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-login-users/login",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-login-users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-login-users/",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-login-users",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-client",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-client",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"agregadorInternalId\":\"100\",\r\n     \"name\":\"prueb\",\r\n    \"identification\":\"0120121\",\r\n     \"company\":\"company\",\r\n     \"nit\":\"12345678\",\r\n     \"email\":\"prueba@gmail.com\",\r\n     \"neighborhood\":\"neighborhood\"\r\n    // \"address\":\"adress\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-client",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-order-general",
+			"item": [
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\":2,\r\n    \"brandAggregatorId\":\"brandAggregatorId\",\r\n    \"clientName\":\"clientName\",\r\n    \"orderNumberId\":\"orderNumberId\",\r\n    \"company\":\"company\",\r\n    \"identification\":\"12345\",\r\n    \"cityId\":1,\r\n    \"address\":\"direccion\",\r\n    \"neighborhood\":\"barrio\",\r\n    \"discountValue\":100,\r\n    \"email\":\"email@gmail.com\",\r\n    \"couponId\":1,\r\n    \"nameCoupon\":\"nameCoupon\",\r\n    \"pointId\":1,\r\n    \"stateOrderId\":1,\r\n    \"aggregatorId\":3,\r\n    \"userId\":1,\r\n    \"cancelUserId\":1919\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general/206",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general",
+								"206"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllByOrderGeneralOrderDetailId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general/orderGeneralId/37",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general",
+								"orderGeneralId",
+								"37"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general/204",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general",
+								"204"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\":1,\r\n    \"brandAggregatorId\":\"brandAggregatorId\",\r\n    \"clientName\":\"clientName\",\r\n    \"orderNumberId\":\"orderNumberId\",\r\n    \"company\":\"company\",\r\n    \"identification\":\"12345\",\r\n    \"cityId\":1,\r\n    \"address\":\"direccion\",\r\n    \"neighborhood\":\"barrio\",\r\n    \"discountValue\":100,\r\n    \"email\":\"email@gmail.com\",\r\n    \"couponId\":1,\r\n    \"nameCoupon\":\"nameCoupon\",\r\n    \"pointId\":1,\r\n    \"stateOrderId\":1,\r\n    \"aggregatorId\":3,\r\n    \"userId\":1919,\r\n    \"cancelUserId\":1919\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general/203",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general",
+								"203"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-order-detail",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderNumberId\":\"12\",\r\n    \"skuItem\":\"skuItemId\",\r\n    \"skuItemId\":\"skuItemId\",\r\n    \"itemName\":\"itemName\",\r\n    \"itemType\":\"1\",//pendiente,\r\n    \"skuItemPrincipal\":\"skuItemPrincipal\",\r\n    \"observation\":\"observation\",\r\n    \"pointId\":1,\r\n    \"customerId\":11\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail/6452",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail",
+								"6452"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderNumberId\":\"12\",\r\n    \"skuItem\":\"skuItemId\",\r\n    \"skuItemId\":\"skuItemId\",\r\n    \"itemName\":\"itemName\",\r\n    \"itemType\":\"2\",//pendiente,\r\n    \"skuItemPrincipal\":\"skuItemPrincipal\",\r\n    \"observation\":\"observation\",\r\n\r\n    \"pointId\":1,\r\n    \"customerId\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail/6451",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail",
+								"6451"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail/6451",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail",
+								"6451"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllByOrderGeneralOrderDetailId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail/orderGeneralId/37",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail",
+								"orderGeneralId",
+								"37"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpc-point-sale",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-point-sale",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-point-sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "address",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "email",
+									"type": "text"
+								},
+								{
+									"key": "folder",
+									"value": "folder",
+									"type": "text"
+								},
+								{
+									"key": "boxNumber",
+									"value": "boxNumber",
+									"type": "text"
+								},
+								{
+									"key": "hoursAttention",
+									"value": "hoursAttention",
+									"type": "text"
+								},
+								{
+									"key": "latlng",
+									"value": "latlng",
+									"type": "text"
+								},
+								{
+									"key": "resolutionDian",
+									"value": "resolutionDian",
+									"type": "text"
+								},
+								{
+									"key": "prefixInvoice",
+									"value": "prefixInvoice",
+									"type": "text"
+								},
+								{
+									"key": "cancellationtime",
+									"value": "cancellationtime",
+									"type": "text"
+								},
+								{
+									"key": "unixTimeOrder",
+									"value": "unixTimeOrder",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "imgLogo",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/manzana.jpeg"
+								},
+								{
+									"key": "imgCabezote",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/papaya.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-point-sale",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-point-sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-point-sale/703",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-point-sale",
+								"703"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "address",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "email",
+									"type": "text"
+								},
+								{
+									"key": "folder",
+									"value": "folder",
+									"type": "text"
+								},
+								{
+									"key": "boxNumber",
+									"value": "boxNumber",
+									"type": "text"
+								},
+								{
+									"key": "hoursAttention",
+									"value": "hoursAttention",
+									"type": "text"
+								},
+								{
+									"key": "latlng",
+									"value": "latlng",
+									"type": "text"
+								},
+								{
+									"key": "resolutionDian",
+									"value": "resolutionDian",
+									"type": "text"
+								},
+								{
+									"key": "prefixInvoice",
+									"value": "prefixInvoice",
+									"type": "text"
+								},
+								{
+									"key": "cancellationtime",
+									"value": "cancellationtime",
+									"type": "text"
+								},
+								{
+									"key": "unixTimeOrder",
+									"value": "unixTimeOrder",
+									"type": "text"
+								},
+								{
+									"key": "brandId",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "imgLogo",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/fresa roja.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-point-sale/703",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-point-sale",
+								"703"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-point-sale/705",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-point-sale",
+								"705"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-order-detail-manual",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail-manual",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail-manual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"orderNumberId\":\"orderNumberId\",\r\n   \"skuItemIs\":\"skuItemIs\",\r\n   \"skuItem\":\"skuItem\",\r\n   \"itemName\":\"itemName\",\r\n   \"itemType\":\"111\",\r\n   \"skuItemPrincipal\":\"skuItemPrincipal\",\r\n   \"observation\":\"observation\",\r\n   \"orderGeneralManualId\":10,\r\n   \"pointId\":\"10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail-manual",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail-manual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail-manual/83",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail-manual",
+								"83"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"orderNumberId\":\"orderNumberId\",\r\n   \"skuItemIs\":\"skuItemIs actualizado\",\r\n   \"skuItem\":\"skuItem\",\r\n   \"itemName\":\"itemName\",\r\n   \"itemType\":\"111\",\r\n   \"skuItemPrincipal\":\"skuItemPrincipal\",\r\n   \"observation\":\"observation\",\r\n   \"orderGeneralManualId\":24,\r\n   \"pointId\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail-manual/75",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail-manual",
+								"75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-detail-manual/83",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-detail-manual",
+								"83"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-order-general-manual",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general-manual",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general-manual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general-manual/28",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general-manual",
+								"28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brandAggregatorId\":\"1\",\r\n    \"orderNumberId\":\"1\",\r\n    \"messageapi\":\"actualizado\",\r\n    \"clientName\":\"clientName\",\r\n    \"company\":\"company\",\r\n    \"typeOrder\":\"typeOrder\",\r\n    \"cityId\":1,\r\n    \"address\":\"address\",\r\n    \"neighborhood\":\"neighborhood\",\r\n    \"email\":\"email\",\r\n    \"discountvalue\":1,\r\n\r\n    \"pointId\":1,\r\n    \"idStateOrder\":2,\r\n    \"aggregatorId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general-manual/28",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general-manual",
+								"28"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"brandAggregatorId\":\"1\",\r\n    \"orderNumberId\":\"1\",\r\n    \"messageapi\":\"1\",\r\n    \"clientName\":\"clientName\",\r\n    \"company\":\"company\",\r\n    \"typeOrder\":\"typeOrder\",\r\n    \"cityId\":1,\r\n    \"address\":\"address\",\r\n    \"neighborhood\":\"neighborhood\",\r\n    \"email\":\"email\",\r\n    \"discountvalue\":1,\r\n\r\n    \"pointId\":1,\r\n    \"idStateOrder\":2,\r\n    \"aggregatorId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general-manual",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general-manual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-general-manual/28",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-general-manual",
+								"28"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-trazasdia",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazasdia",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazasdia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOneById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazasdia/153",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazasdia",
+								"153"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 2,\r\n    \"orderGeneralId\": 43,\r\n    \"trazaId\": 3,\r\n    \"incidentId\": 1,\r\n    \"observations\": \"prueba de clasificacion\",\r\n    \"userId\": 1,\r\n    \"userTransferId\": 1,\r\n    \"userCancelId\": 1,\r\n    \"pointId\": 60\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazasdia",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazasdia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerId\": 1,\r\n    \"pointId\": 60,\r\n    \"orderGeneralId\": 43,\r\n    \"trazaId\": 3,\r\n    \"incidentId\": 1,\r\n    \"observations\": \"prueba de clasificacion\",\r\n    \"userId\": 1,\r\n    \"userTransferId\": 1,\r\n    \"userCancelId\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazasdia/153",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazasdia",
+								"153"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazasdia/154",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazasdia",
+								"154"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-trazas",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazas",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOneById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazas/144",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazas",
+								"144"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"observations\":\"observations\",\r\n    \"customerId\":2,\r\n    \"pointId\":1,\r\n    \"orderGeneralId\":4544227,\r\n    \r\n     \"userId\":1,\r\n    \"userTransferId\":1,\r\n    \"userCancelId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazas",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"observations\":\"observations\",\r\n    \"customerId\":10,\r\n    \"pointId\":1,\r\n    \"orderGeneralId\":4544227,\r\n    \r\n    \"userId\":1,\r\n    \"userTransferId\":1,\r\n    \"userCancelId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazas/144",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazas",
+								"144"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-trazas/143",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-trazas",
+								"143"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpc-items",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "skuItem",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "itemName",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/carambola amarilla negra.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "skuItem",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "itemName",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/papaya.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/1133",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								"1133"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/1129",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								"1129"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/1134",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								"1134"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpr-order-type-payment",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-type-payment",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-type-payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-type-payment/79",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-type-payment",
+								"79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderNumberId\":\"1\",\r\n    \"typePayId\":1,\r\n    \"nomTypePay\":\"1\",\r\n    \"pointid\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-type-payment/",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-type-payment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"orderNumberId\":\"1\",\r\n    \"typePayId\":1,\r\n    \"nomTypePay\":\"11\",\r\n    \"pointid\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-type-payment/79",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-type-payment",
+								"79"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-order-type-payment/80",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-order-type-payment",
+								"80"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://[::1]:4000/api/v1/tcpc-items/image",
+					"protocol": "http",
+					"host": [
+						"[::1]"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"tcpc-items",
+						"image"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

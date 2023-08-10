@@ -1,0 +1,6 @@
+export * from "./Header"
+export * from "./buttons"
+export * from "./Productos"
+export * from "./Dashboard"
+export * from "./Banners"
+export * from "./Tickets"
