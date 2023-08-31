@@ -70,14 +70,14 @@ export class TcpcItemsCategoriesService {
           listaPrecio: listaprecio,
         },
       });
-      // const dataConverted = data.map((entity) =>
-      //   TcpcItemsCategoriesConverter.toDto(entity),
-      // );
+      const dataConverted = data.map((entity) =>
+        TcpcItemsCategoriesConverter.toDtoListPrice(entity),
+      );
       if (data.length != 0) {
         return {
           statusCode: HttpStatus.OK,
           message: 'Categorias obtenido con exito',
-          data: data,
+          data: dataConverted,
         };
       } else {
         return {

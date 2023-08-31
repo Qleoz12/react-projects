@@ -3,6 +3,8 @@ import axios from "axios";
 const baseUrl = "/tcpc-items-categories";
 
 export const getItemsCategories = async (listPrice) => {
+
+  //retun constante 
   if(listPrice){
     return await axios.get(`${baseUrl}/${listPrice}`);  
   }

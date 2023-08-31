@@ -14,7 +14,6 @@ import {
 } from "./containers/pages/";
 import ScrollToTop from "./ScrollToTop/index.jsx";
 import React, { useState } from "react";
-import { LocationComponent } from "./components/LocationComponent";
 import { GuardedRoute } from "./routes/GuardedRoute"
 import { useSelector } from "react-redux";
 

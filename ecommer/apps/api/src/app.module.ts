@@ -21,6 +21,7 @@ import { TcpcBrand } from './feature/tcpc-brand.entity';
 import { ConfigModule } from '@nestjs/config';
 import { ItemsListaPrecio } from './feature/tcpr_itemslistaprecio';
 import { TcprCategoriasListaPrecio } from './feature/tcpr_categorias-listaprecio';
+import { TcpcVias } from './feature/tcpc-vias.entity';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { TcprCategoriasListaPrecio } from './feature/tcpr_categorias-listaprecio
         TcprPointSale,
         ItemsListaPrecio,
         TcprCategoriasListaPrecio,
+        TcpcVias,
       ],
       synchronize: false,
       autoLoadEntities: true,

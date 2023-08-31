@@ -14,6 +14,7 @@ import { TcpcItemsCategoriesModule } from './tcpc-items-categories/tcpc-items-ca
 import { TcpcBrandModule } from './tcpc-brand/tcpc-brand.module';
 import { TcpcPointSaleModule } from './tcpc-point-sale/tcpc-point-sale.module';
 import { TcpSPModule } from './sps/dto/tcp-sp.module';
+import { TcpcViasModule } from './tcpc-vias/tcpc-vias.module';
 @Module({
   imports: [
     TcpcItemsModule,
@@ -30,6 +31,7 @@ import { TcpSPModule } from './sps/dto/tcp-sp.module';
     TcpcBrandModule,
     TcpcPointSaleModule,
     TcpSPModule,
+    TcpcViasModule,
   ],
 })
 export class EcommerceModule {}

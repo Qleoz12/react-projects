@@ -1,7 +1,25 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { BackgroundImage } from "../../../../../components";
+import { AddressComponent } from "../../../../../components/AddressComponent";
+import { getVias } from "../../../../../services/viasService"
+import { SnackbarProvider } from "notistack";
+import { SnackbarUtilitiesConfigurator } from "../../../../../utilities";
+
 
 export const Information = ({ setOption }) => {
+  const [status, setStatus] = useState(null);
+  const [vias, setVias] = useState([]);
+  
+  // const dispatch = useDispatch();
+  useEffect(() => {
+
+    const getvias = async () => {
+      const response = await getVias();
+      setVias(response.data)
+    }
+    getvias();
+  }, [])
+
   const [selectedOption, setSelectedOption] = useState('');
   const handleOrderConfirmation = () => {
     setOption(false);
@@ -13,6 +31,9 @@ export const Information = ({ setOption }) => {
   };
 
   return (
+    <>
+      <SnackbarProvider>
+      <SnackbarUtilitiesConfigurator />
     <div className="text-sm pb-16 px-4 md:pl-16 md:pr-12">
       <h1 className="font-bold pb-2 text-light-ivory text-xl">Informatión del cliente</h1>
       <div className="flex gap-8">
@@ -54,45 +75,7 @@ export const Information = ({ setOption }) => {
           </select>
         </div>
       </div>
-      <div className="mt-4">
-        <h3 className="font-bold">Direccion*</h3>
-        <div className="grid sm:grid-cols-6  grid-cols-3  gap-2  place-items-center">
-          <select 
-            className="rounded-full text-[15px] p-1 pl-2 font-medium bg-light-ivory text-chocolate-brown focus:outline-none focus:border-none w-full"
-          >
-            <option>-</option>
-            <option>y</option>
-          </select>
-          <input
-            placeholder="#"
-            className="text-chocolate-brown w-full text-[15px] p-1 pl-2 bg-light-ivory rounded-3xl font-medium" 
-            required 
-          />
-          <select 
-            className="rounded-full text-[15px] p-1 pl-2 font-medium bg-light-ivory text-chocolate-brown focus:outline-none focus:border-none w-full"
-          >
-            <option>-</option>
-            <option>xxx xxx </option>
-          </select>
-          <select 
-            className="rounded-full text-[15px] p-1 pl-2 font-medium bg-light-ivory text-chocolate-brown focus:outline-none focus:border-none w-full"
-          >
-            <option>-</option>
-            <option>y</option>
-          </select>
-          <select 
-            className="rounded-full text-[15px] p-1 pl-2 font-medium bg-light-ivory text-chocolate-brown focus:outline-none focus:border-none w-full"
-          >
-            <option>-</option>
-            <option>xxx xxx </option>
-          </select>
-          <input
-            placeholder="#"
-            className="text-chocolate-brown w-full text-[15px] p-1 pl-2 bg-light-ivory rounded-3xl font-medium" 
-            required 
-          />
-        </div>
-      </div>
+      <AddressComponent vias={vias}></AddressComponent>
       <h2 className="mt-4 font-bold">Casa, apartamento, etc. (optional)</h2>
       <input
         placeholder="Casa, apartamento, etc. "
@@ -201,5 +184,7 @@ export const Information = ({ setOption }) => {
         </BackgroundImage>
       </div>
     </div>
+    </SnackbarProvider>
+    </>
  );
 };

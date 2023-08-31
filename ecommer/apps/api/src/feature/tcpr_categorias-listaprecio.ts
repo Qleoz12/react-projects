@@ -32,5 +32,5 @@ export class TcprCategoriasListaPrecio {
     { onDelete: 'NO ACTION', onUpdate: 'NO ACTION' },
   )
   @JoinColumn([{ name: 'idCategoria', referencedColumnName: 'categoryId' }])
-  categories: TcpcItemsCategories[];
+  categories: TcpcItemsCategories;
 }
