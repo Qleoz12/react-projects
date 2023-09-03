@@ -17,7 +17,7 @@ export const Contactenos = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm("service_uzmiaw5","template_aq4egnd",e.target,"AKeiwRLv10hMvquFb")
+    emailjs.sendForm(import.meta.env.VITE_CONTACT_SERVICE_ID, import.meta.env.VITE_CONTACT_TEMPLATE_ID, e.target, import.meta.env.VITE_CONTACT_USER_ID)
       .then((result) => {
         console.log(result.text);
       })

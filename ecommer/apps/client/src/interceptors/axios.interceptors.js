@@ -37,7 +37,10 @@ export const AxiosInterceptor = () => {
       return response.data;
     },
     (error) => {
-      SnackbarUtilities.error(getValidationError(error.code));
+
+      console.log(error.response.data.message);
+      if ('code' in error)  SnackbarUtilities.error(getValidationError(error.code));
+      if ('statusCode' in error)  SnackbarUtilities.error(getValidationError(error.statusCode));
       return Promise.reject(error);
     }
   );

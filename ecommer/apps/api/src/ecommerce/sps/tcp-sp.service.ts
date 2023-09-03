@@ -4,7 +4,8 @@ import { TcpcBrand } from 'src/feature/tcpc-brand.entity';
 import { Repository } from 'typeorm';
 import { TcpToppings } from './dto/tcp-toppings.dto';
 import { PuntoDto } from './dto/punto.dto';
-import { TcpRestaurantsSpDto } from './dto/tcp-restaurants.dto copy';
+import { TcpRestaurantsSpDto } from './dto/tcp-restaurants.dto';
+import { TcpCreaidordengeneral } from './dto/tcp-creaidordengeneral.dto';
 
 @Injectable()
 export class TcpSPService {
@@ -34,6 +35,18 @@ export class TcpSPService {
       statusCode: HttpStatus.OK,
       message: 'exito',
       data: data,
+    };
+  }
+
+  async findcreaidordengeneral(dto: TcpCreaidordengeneral) {
+    const data = await this.repository.query(
+      'call spcp_website_creaidordengeneral(?)',
+      [dto.idPunto],
+    );
+    return {
+      statusCode: HttpStatus.OK,
+      message: 'exito',
+      data: data[0][0],
     };
   }
 }

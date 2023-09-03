@@ -1,0 +1,50 @@
+export class TcprOrderGeneralDto {
+    customerId!: number;
+    brandId!: number;
+    brandAggregatorId!: string;
+    aggregatorId!: number;
+    pointId!: number;
+    multiPointId!: number;
+    orderDayId!: number;
+    orderGeneralId!: number;
+    orderNumberId!: string; //orderNumberId
+    clientName!: string;
+    company!: string;
+    identification!: string;
+    landline!: string;
+    cellPhone!: string;
+    cityId!: number;
+    address!: string;
+    neighborhood!: string;
+    email!: string;
+    years!: string | null;
+    lng!: string | null;
+    nomTypeDelivery!: string | null;
+    valueItems!: number;
+    valueDomicile!: number;
+    valuable!: number;
+    valueBaseItems!: number;
+    valueBaseTotalOrder!: number;
+    discountValue!: number;
+    valueOrder!: number;
+    totalOrder!: number;
+    valueIngressCli!: number;
+    typeSaleId!: number;
+    stateOrderId!: number;
+    statePosId!: number;
+    couponId!: string;
+    nameCoupon!: string;
+    impression!: number;
+    impresionLogistics!: number;
+    logisticsId!: number;
+    domiciliaryId!: number;
+    bill!: string | null;
+    observations!: string | null;
+    userId!: number;
+    cancelUserId!: number;
+    dateState!: Date;
+    dateInvoice!: Date;
+    dateOrder!: Date;
+    dateCreation!: Date;
+  }
+  
