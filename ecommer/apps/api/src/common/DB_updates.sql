@@ -1,0 +1,1 @@
+ALTER TABLE tcpr_cliente ADD CONSTRAINT UQ_email UNIQUE(email);

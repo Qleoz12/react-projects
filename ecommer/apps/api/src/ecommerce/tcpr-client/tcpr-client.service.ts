@@ -73,6 +73,29 @@ export class TcprClientService {
     }
   }
 
+  async findOneByEmail(email: string) {
+    try {
+      const data = await this.repository.findOneBy({ email: email });
+      if (data) {
+        return {
+          statusCode: HttpStatus.OK,
+          message: 'Cliente obtenido con exito',
+          data,
+        };
+      } else {
+        return {
+          statusCode: HttpStatus.BAD_REQUEST,
+          message: 'Cliente no existe',
+        };
+      }
+    } catch (error) {
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error?.message,
+      };
+    }
+  }
+
   async update(customerId: number, dto: TcprClientDto) {
     try {
       const data = await this.repository

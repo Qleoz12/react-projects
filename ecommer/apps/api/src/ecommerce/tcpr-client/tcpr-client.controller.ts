@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { TcprClientService } from './tcpr-client.service';
 import { TcprClientDto } from './dto/tcpr-client.dto';
+import e from 'express';
 
 @Controller('tcpr-client')
 export class TcprClientController {
@@ -19,14 +20,19 @@ export class TcprClientController {
     return await this.service.create(dto);
   }
 
-  @Get()
-  async findAll() {
-    return await this.service.findAll();
-  }
+  // @Get()
+  // async findAll() {
+  //   return await this.service.findAll();
+  // }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.service.findOne(+id);
+  // @Get(':id')
+  // async findOne(@Param('id') id: string) {
+  //   return await this.service.findOne(+id);
+  // }
+
+  @Get(':email')
+  async findOne(@Param('email') email: string) {
+    return await this.service.findOneByEmail(email);
   }
 
   @Put(':id')
@@ -34,8 +40,8 @@ export class TcprClientController {
     return await this.service.update(+id, dto);
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
-    return await this.service.remove(+id);
-  }
+  // @Delete(':id')
+  // async remove(@Param('id') id: string) {
+  //   return await this.service.remove(+id);
+  // }
 }

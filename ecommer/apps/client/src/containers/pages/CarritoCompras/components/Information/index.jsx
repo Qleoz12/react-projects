@@ -165,6 +165,7 @@ export const Information = ({ setOption }) => {
         <SnackbarUtilitiesConfigurator />
         <div className="text-sm pb-16 px-4 md:pl-16 md:pr-12">
           <h1 className="font-bold pb-2 text-light-ivory text-xl">Informatión del cliente</h1>
+          <form onSubmit={handleOrderConfirmation}>
           <div className="flex gap-8">
             <div className="flex-1">
               <h3 className="font-bold">Nombre*</h3>
@@ -326,6 +327,7 @@ export const Information = ({ setOption }) => {
               </button>
             </BackgroundImage>
           </div>
+          </form>
         </div>
       </SnackbarProvider>
     </>
