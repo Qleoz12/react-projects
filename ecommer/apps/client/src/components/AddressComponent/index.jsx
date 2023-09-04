@@ -6,9 +6,9 @@ import { useDispatch } from "react-redux";
 import { addPositionUser } from "../../redux/slices/globalCommonSlice"
 import { getVias } from "../../services/viasService"
 
-export const AddressComponent = ({ vias, onAddressChange }) => {
+export const AddressComponent = ({ vias, onAddressChange,externalState }) => {
   const [selectedVia, setSelectedVia] = useState("");
-  const [parta, setsetParta] = useState("");
+  const [parta, setParta] = useState("");
   const [partb, setPartb] = useState("");
   const [partc, setPartc] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
@@ -16,6 +16,11 @@ export const AddressComponent = ({ vias, onAddressChange }) => {
   useEffect(() => {
     console.log(" AddressComponen loaded")
   }, []);
+
+  useEffect(() => {
+    console.log(" vias loaded")
+    if(vias && vias.length>0) setSelectedVia(vias[0].id)
+  }, [vias]);
 
   useEffect(() => {
     onAddressChange({
@@ -27,6 +32,16 @@ export const AddressComponent = ({ vias, onAddressChange }) => {
     });
   }, [selectedVia, parta, partb, partc, neighborhood]);
 
+  useEffect(() => {
+    console.log("AddressComponent externalState loaded");
+    if (externalState) {
+      setSelectedVia(externalState.selectedVia);
+      setParta(externalState.parta);
+      setPartb(externalState.partb);
+      setPartc(externalState.partc);
+      setNeighborhood(externalState.neighborhood);
+    }
+  }, [externalState]);
 
   return (
 
@@ -53,7 +68,7 @@ export const AddressComponent = ({ vias, onAddressChange }) => {
         <input
           placeholder="134A"
           value={parta}
-          onChange={(e) => setsetParta(e.target.value)}
+          onChange={(e) => setParta(e.target.value)}
           className="text-chocolate-brown w-full text-[15px] p-1 pl-2 bg-light-ivory rounded-3xl font-medium"
           required
         />

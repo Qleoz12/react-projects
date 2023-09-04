@@ -35,8 +35,7 @@ export const Menu = () => {
     return data;
   };
 
-  const delay = ms => new Promise(res => setTimeout(res, ms));
-
+  
   useEffect(() => {
     console.log('hello',currentPositionUser);
     const fetchCategories = async () => {
