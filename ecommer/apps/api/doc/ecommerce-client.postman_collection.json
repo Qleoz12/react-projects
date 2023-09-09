@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "5c104815-dec9-4ac1-8149-a2befb3b56c0",
+		"_postman_id": "82d728de-f822-445e-85d3-8c01c5d0ab30",
 		"name": "ecommerce-client",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25442685"
+		"_exporter_id": "5695912",
+		"_collection_link": "https://dannxx.postman.co/workspace/mirecarga~b484ff57-27bb-47a6-8b68-fde6163ed838/collection/5695912-82d728de-f822-445e-85d3-8c01c5d0ab30?action=share&source=collection_link&creator=5695912"
 	},
 	"item": [
 		{
@@ -43,10 +44,20 @@
 				{
 					"name": "findOne",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODIzIiwiaWF0IjoxNjkyMDI0NTMzLCJleHAiOjE2OTIwMjgxMzN9.D9TSZVRI5ye9_xzLs8EF3XHt_UNbOQGuH3vamRFHAdQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://[::1]:4000/api/v1/tcpc-login-users/",
+							"raw": "http://[::1]:4000/api/v1/tcpc-login-users/user",
 							"protocol": "http",
 							"host": [
 								"[::1]"
@@ -56,7 +67,7 @@
 								"api",
 								"v1",
 								"tcpc-login-users",
-								""
+								"user"
 							]
 						}
 					},
@@ -89,13 +100,56 @@
 					"response": []
 				},
 				{
+					"name": "findAll Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpr-client/info@info.com",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpr-client",
+								"info@info.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAll Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items-categories",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "createOne",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"agregadorInternalId\":\"100\",\r\n     \"name\":\"prueb\",\r\n    \"identification\":\"0120121\",\r\n     \"company\":\"company\",\r\n     \"nit\":\"12345678\",\r\n     \"email\":\"prueba@gmail.com\",\r\n     \"neighborhood\":\"neighborhood\"\r\n    // \"address\":\"adress\",\r\n}",
+							"raw": "{\r\n    \"agregadorInternalId\": \"100\",\r\n    \"name\": \"prueb\",\r\n    \"identification\": \"0120121\",\r\n    \"company\": \"company\",\r\n    \"nit\": \"12345678\",\r\n    \"email\": \"prueba@gmail.com\",\r\n    \"neighborhood\": \"neighborhood\"\r\n    // \"address\":\"adress\",\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1344,7 +1398,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://[::1]:4000/api/v1/tcpc-items/1129",
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/",
 							"protocol": "http",
 							"host": [
 								"[::1]"
@@ -1354,7 +1408,231 @@
 								"api",
 								"v1",
 								"tcpc-items",
-								"1129"
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/category/1",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								"category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeOne",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/1134",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								"1134"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpc-vias",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-vias",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-vias"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tcpc-items-categories",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items-categories/200",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items-categories",
+								"200"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createOne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "skuItem",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "itemName",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/carambola amarilla negra.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editOne",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "skuItem",
+									"value": "12",
+									"type": "text"
+								},
+								{
+									"key": "itemName",
+									"value": "prueba",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description",
+									"type": "text"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/HP/Desktop/assets/papaya.jpg",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/1133",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								"1133"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findOne",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcpc-items/",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcpc-items",
+								""
 							]
 						}
 					},
@@ -1517,6 +1795,103 @@
 			]
 		},
 		{
+			"name": "tcp-sp",
+			"item": [
+				{
+					"name": "tcp-sps-find",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lat\": -74.0666,\r\n    \"lng\": 4.65\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcp-sps",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcp-sps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tcp-sps-find-toppings",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPunto\": 70,\r\n    \"skuItem\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcp-sps/toppings",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcp-sps",
+								"toppings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tcp-sps-creaidordengeneral",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idPunto\": 1231231321\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://[::1]:4000/api/v1/tcp-sps/creaidordengeneral",
+							"protocol": "http",
+							"host": [
+								"[::1]"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"v1",
+								"tcp-sps",
+								"creaidordengeneral"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "image",
 			"request": {
 				"method": "POST",
@@ -1533,6 +1908,34 @@
 						"v1",
 						"tcpc-items",
 						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/app",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"data\":\"ololo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/app",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app"
 					]
 				}
 			},
