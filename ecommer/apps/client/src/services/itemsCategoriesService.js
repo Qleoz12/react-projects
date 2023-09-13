@@ -14,7 +14,7 @@ export const getItemsCategories = async (listPrice) => {
 export const getItemsCategoriesByListPrice = async (currentPositionUser) => {
   //pruebA@gmail.com
   //123456
-  return await axios.post(`/tcp-sps`,currentPositionUser);
+  return await axios.post(`/tcp-sps`,{"lat":-74.0666,"lng":4.65});
 };
 
 
