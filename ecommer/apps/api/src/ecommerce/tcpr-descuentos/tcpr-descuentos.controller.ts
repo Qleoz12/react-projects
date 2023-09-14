@@ -10,8 +10,9 @@ import {
 import { TcprDescuentosService } from './tcpr-descuentos.service';
 import e from 'express';
 import { TcprDescuentosDto } from './dto/tcpr-descuentos.dto';
+import { TcprDescuentosRedimirDto } from './dto/tcpr-descuentos.redimir.dto';
 
-@Controller('tcpr-client')
+@Controller('tcpr-descuentos')
 export class TcprDescuentosController {
   constructor(private readonly service: TcprDescuentosService) {}
 
@@ -20,28 +21,13 @@ export class TcprDescuentosController {
     return await this.service.create(dto);
   }
 
-  // @Get()
-  // async findAll() {
-  //   return await this.service.findAll();
-  // }
+  @Put('/redimir')
+  async use(@Body() dto: TcprDescuentosRedimirDto) {
+    return await this.service.use(dto);
+  }
 
-  // @Get(':id')
-  // async findOne(@Param('id') id: string) {
-  //   return await this.service.findOne(+id);
-  // }
-
-  // @Get(':email')
-  // async findOne(@Param('email') email: string) {
-  //   return await this.service.findOneByEmail(email);
-  // }
-
-  // @Put(':id')
-  // async update(@Param('id') id: string, @Body() dto: TcprClientDto) {
-  //   return await this.service.update(+id, dto);
-  // }
-
-  // @Delete(':id')
-  // async remove(@Param('id') id: string) {
-  //   return await this.service.remove(+id);
-  // }
+  @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return await this.service.findOne(id);
+  }
 }
