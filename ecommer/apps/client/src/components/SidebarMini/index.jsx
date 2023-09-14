@@ -1,16 +1,12 @@
-export const SidebarMini = ({ sections }) => {
-    return (
-      <div className="sidebar">
-        <ul>
-          {sections.map((section) => (
-            <li key={section} 
-             onClick={() => onSectionChange(section)}
-            >
-              {section}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-  
+
+
+export const SidebarMini = ({ title }) => {
+  return (
+    <div className="sidebar">
+      <h3>
+        {title}
+      </h3>
+    </div>
+  );
+}
+

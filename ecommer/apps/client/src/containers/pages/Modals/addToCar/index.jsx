@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { FormLabel, Modal } from "@mui/material";
+import { FormLabel, Modal, deprecatedPropType } from "@mui/material";
 import { useSelector } from "react-redux";
 import { SnackbarUtilities } from "../../../../utilities";
 import { addProductToCart } from "../../../../redux/slices/menuProductSelectedCartSlice";
 import { BackgroundImage } from "../../../../components";
 import { getToppings } from "../../../../services/itemsCategoriesService"
 import { SidebarMini } from "../../../../components/SidebarMini/";
-import { ProductList }  from "../../../../components/ProductsList/"
+import { ProductList } from "../../../../components/ProductsList/"
 // import { PinMapIcon } from "../Icons"
 
 
@@ -19,7 +19,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const [toppings, setToppings] = useState([]);
   const [withToppings, setwithToppings] = useState(false);
   const [selections, setSelections] = useState([]);
-  const [fullToppings, setFullToppings] = useState();
+  const [fullToppings, setFullToppings] = useState({});
 
   const [subtotal, setSubtotal] = useState(product.price * amountSelected);
 
@@ -33,28 +33,28 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
         const dataToppings = { idPunto: 70, skuItem: 7 };
         const response = await getToppings(dataToppings);
         console.log(1, response)
-        console.log(2,response.data[0])
+        console.log(2, response.data[0])
         const data = response.data;
-        const decoupleToppings = {grupos : [], objects : []}
-        data[0].filter(x=> x.skuItemSeleccion!=null)
-              .forEach(topping => {
-                if (topping.nombreGrupoSeleccion != null && 
-                  !decoupleToppings.grupos.includes(topping.nombreGrupoSeleccion)){
-                  decoupleToppings.grupos.push(topping.nombreGrupoSeleccion)
-                  decoupleToppings.objects.push([])
-                }
-                if(decoupleToppings.grupos.includes(topping.nombreGrupoSeleccion)){
-                  decoupleToppings.objects[
-                    decoupleToppings.grupos.indexOf(topping.nombreGrupoSeleccion)
-                  ].push(topping)
-                }
-                console.log(decoupleToppings)
-              })
+        var decoupleToppings = { grupos: [], objects: [] }
+        data[0].filter(x => x.skuItemSeleccion != null)
+          .forEach(topping => {
+            if (topping.nombreGrupoSeleccion != null &&
+              !decoupleToppings.grupos.includes(topping.nombreGrupoSeleccion)) {
+              decoupleToppings.grupos.push(topping.nombreGrupoSeleccion)
+              decoupleToppings.objects.push([])
+            }
+            if (decoupleToppings.grupos.includes(topping.nombreGrupoSeleccion)) {
+              decoupleToppings.objects[
+                decoupleToppings.grupos.indexOf(topping.nombreGrupoSeleccion)
+              ].push(topping)
+            }
+            console.log(decoupleToppings)
+          })
         console.log(3, decoupleToppings)
         setFullToppings(decoupleToppings);
-        setToppings(decoupleToppings.objects[decoupleToppings.grupos.indexOf("ACOMPANAMIENTO")]);
-        setDrinks(decoupleToppings.objects[decoupleToppings.grupos.indexOf("BEBIDAS_COMBOS")]);
-        console.log('toppings', data);
+        // setToppings(decoupleToppings.objects[decoupleToppings.grupos.indexOf("ACOMPANAMIENTO")]);
+        // setDrinks(decoupleToppings.objects[decoupleToppings.grupos.indexOf("BEBIDAS_COMBOS")]);
+        console.log('toppings', decoupleToppings);
         return data;
       };
 
@@ -83,8 +83,8 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   };
 
 
-  const handleChange =() => {
-    this.setState({value: event.target.value});
+  const handleChange = () => {
+    this.setState({ value: event.target.value });
   };
 
   const handleYES = () => {
@@ -188,93 +188,14 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
                     caso de que no, omite este paso.
                   </strong>
                 </span>
-                {withToppings ?
-                <><section>
-                  {
-                  
-                  fullToppings.grupos.forEach(grupo => {
-                   <div>
-                    <div className="sidebar-container">
-                      <SidebarMini sections={grupo} 
-                      // onSectionChange={handleSectionChange} 
-                      />
-                    </div>
-                    <div className="product-list-container">
-                    <ProductList
-                      section={grupo}
-                      products={fullToppings.objects[fullToppings.grupos.indexOf(grupo)]}
-                      onProductChange={handleProductChange}
-                    />
-                    </div>
-                   </div>
-                  })
-                      
-                  }
-                    {/* <h3 className="m-2 font-bold">Bebidas</h3>
-                    {drinks?.map((drink) => (
-                      <div key={drink?.skuItemSeleccion}>
-                        <input
-                          type="radio"
-                          id={drink?.skuItemSeleccion}
-                          name="selectedProduct"
-                          value={drink?.skuItemSeleccion}
-                          onChange={(e) => handleProductChange(e)}
-                        />
-                        <label htmlFor={drink?.skuItemSeleccion}>
-                          {drink?.ItemSeleccion}<br/> + ${drink?.precioSeleccion}
-                        </label>
-                        <hr />
-                      </div>
-                    ))} */}
-                    {/* {
-                      drinks?.map((drink) => {
-                        
-                        <input 
-                          type="radio"
-                          id={drink?.skuItemSeleccion}
-                          value={drink?.skuItemSeleccion}
-                          onChange={(e) => handleChange(e)} 
-                        />
-                        
-                      })
-                    /* <select
-                      onChange={(e) => handleChange(e)}
-                      className="font-bold text-sm rounded-full block w-full p-2 px-4 bg-fire-red border-gray-600 text-white"
-                    >
-                      {drinks?.map((item) => (
-                        <option
-                          className="max-w-[15rem]"
-                          key={item?.skuItemSeleccion}
-                          value={item?.skuItemSeleccion}
-                        >
-                          {item.ItemSeleccion} -  {item.itemPrecio}
-                        </option>
-                      ))}
-                    </select> */} 
-                  {/* </section><section>
-                      <h3 className="m-2 font-bold">Acompañamientos</h3>
-                      <select
-                        className="font-bold text-sm rounded-full block w-full p-2 px-4 bg-fire-red border-gray-600 text-white"
-                      >
-                        {toppings?.map((item) => (
-                          <option
-                            className="max-w-[15rem]"
-                            key={item?.skuItemSeleccion}
-                            value={item?.skuItemSeleccion}
-                          >
-                            {item.ItemSeleccion} -  {item.itemPrecio}
-                          </option>
-                        ))}
-                        </select>*/}
-                    </section></> 
-                  :<></>  }   
+
               </section>
               <section className="mt-2">
                 <div className="flex justify-between">
                   <span className="font-bold text-chocolate-brown">
                     Acompañamiento:
                   </span>
-                  
+
                   <span className="font-bold text-moss-green">+$0</span>
                 </div>
               </section>
@@ -287,6 +208,31 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
                 </div>
               </section>
             </div>
+          </div>
+          <div className="flex gap-10 px-20 overflow-auto">
+          {withToppings ?
+                  <div>
+                    {fullToppings?.grupos.map((grupo, index) => (
+                      <div className="sidebar-container">
+                        <SidebarMini title={grupo} key={index} />
+
+                        <div className="product-list-container">
+                          {fullToppings?.objects[index].map((detail, index) => (
+                            <ProductList
+                              detail={detail}
+                            />
+                          ))}
+
+                        </div>
+                      </div>
+
+
+                    )
+
+                    )}
+                  </div>
+                  : <>adsfasdfasd</>
+                }
           </div>
           <footer className="flex gap-6 px-20 pb-20">
             <button className="w-2/5 font-bold text-chocolate-brown border-fire-red border-2 py-1">

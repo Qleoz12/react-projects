@@ -1,25 +1,20 @@
-export const ProductList = ({ section, products, onProductChange }) => {
-  //  const handleProductChange = (productId) => {
-  //    onProductChange(productId);
-  //  };
+export const ProductList = ({ detail }) => {
 
   return (
     <div className="product-list">
-      <h2>{section}</h2>
+
       <ul>
-        {products.map((product) => (
-          <li key={product.skuItemSeleccion}>
-            <label>
-              <input
-                type="radio"
-                name="selectedProduct"
-                value={product.skuItemSeleccion}
-                // onChange={(e) => handleProductChange(e)}
-              />
-              {product.ItemSeleccion} <br /> ${product.precioSeleccion}
-            </label>
-          </li>
-        ))}
+        <li>
+          <label>
+            <input
+              type="radio"
+              name="selectedProduct"
+              value={detail.skuItemSeleccion}
+            // onChange={(e) => handleProductChange(e)}
+            />
+            {detail.ItemSeleccion} <br /> ${detail.precioSeleccion}
+          </label>
+        </li>
       </ul>
     </div>
   );
