@@ -39,19 +39,6 @@ export const Menu = () => {
   useEffect(() => {
     console.log('hello',currentPositionUser);
     const fetchCategories = async () => {
-      //     try {
-      //       dispatch(setLoading(true));
-      //       const response = await getItemsCategoriesByListPrice(currentPositionUser);
-      //       setCategories(response.data);
-      //     } catch (error) {
-      //       console.error('Error fetching categories:', error);
-      //     }
-      //   };
-
-      //   if (currentPositionUser && currentPositionUser.lat && currentPositionUser.lng) {
-      //     fetchCategories();
-      //   }
-      // }, [currentPositionUser]);
       try {
         dispatch(setLoading(true))
         if (currentPositionUser && currentPositionUser.lat && currentPositionUser.lng) {
