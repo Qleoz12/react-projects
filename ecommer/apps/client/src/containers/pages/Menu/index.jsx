@@ -25,6 +25,7 @@ export const Menu = () => {
     setCategorieSelected(selected.id);
     dispatch(addSelectedCategory({ category: selected }));
     const data = await handleCategorieSelection(selected.id);
+    console.log("items",data)
     setItems(data);
     dispatch(setLoading(false))
   }

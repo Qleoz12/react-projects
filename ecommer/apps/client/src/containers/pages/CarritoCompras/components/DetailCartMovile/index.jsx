@@ -1,3 +1,5 @@
+
+
 export const DetailCartMovile = () => {
   return (
     <div className=" p-3 ">
@@ -39,7 +41,7 @@ export const DetailCartMovile = () => {
         ))}
       </div>
 
-      <div className="flex gap-4 mt-8">
+      {/* <div className="flex gap-4 mt-8">
         <button className="bg-slate-300 rounded-lg  px-3 py-2">
           Código de descuento
         </button>
@@ -60,7 +62,7 @@ export const DetailCartMovile = () => {
             $ 84.400 COP
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
