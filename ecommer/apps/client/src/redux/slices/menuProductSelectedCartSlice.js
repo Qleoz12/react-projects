@@ -10,7 +10,7 @@ const menuProductSelectedCartSlice = createSlice({
   },
   reducers: {
     addProductToCart: (state, action) => {
-      const { product, amount } = action.payload;
+      const { product, amount, toppings,subTotal } = action.payload;
 
       const exitProduct = state.cart.find(
         (itemProduct) => itemProduct?.id === product?.id
@@ -19,7 +19,11 @@ const menuProductSelectedCartSlice = createSlice({
         const itemProduct = {
           ...product,
           amount,
+          toppings,
+          subTotal
+
         };
+        state.subtotal  = subTotal;
         state.cart.push(itemProduct);
       } else {
         exitProduct.amount = amount;
@@ -54,8 +58,9 @@ const menuProductSelectedCartSlice = createSlice({
         state.subtotal = state.cart?.reduce(function (
           accumulator,
           currentValue
+          
         ) {
-          return accumulator + Number(currentValue?.price);
+          return  Number(currentValue?.subTotal)+accumulator;
         },
         0);
       } else {

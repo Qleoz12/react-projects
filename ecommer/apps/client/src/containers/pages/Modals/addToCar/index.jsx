@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+
 import { useDispatch } from "react-redux";
+import List from '@mui/material/List';
 import { FormLabel, Modal, deprecatedPropType } from "@mui/material";
 import { useSelector } from "react-redux";
 import { SnackbarUtilities } from "../../../../utilities";
@@ -7,7 +9,7 @@ import { addProductToCart } from "../../../../redux/slices/menuProductSelectedCa
 import { BackgroundImage } from "../../../../components";
 import { getToppings } from "../../../../services/itemsCategoriesService"
 import { SidebarMini } from "../../../../components/SidebarMini/";
-import { ProductList } from "../../../../components/ProductsList/"
+import { ToppingList } from "../../../../components/ToppingList"
 // import { PinMapIcon } from "../Icons"
 
 
@@ -15,13 +17,13 @@ import { ProductList } from "../../../../components/ProductsList/"
 export const ModalAddToCar = ({ product, open, handleClose }) => {
   const dispatch = useDispatch();
   const [amountSelected, setAmountSelected] = useState(Number(1));
-  const [drinks, setDrinks] = useState([]);
+  const [drinks, setDrinks] = useState();
   const [toppings, setToppings] = useState([]);
   const [withToppings, setwithToppings] = useState(false);
   const [selections, setSelections] = useState([]);
   const [fullToppings, setFullToppings] = useState({});
-
-  const [subtotal, setSubtotal] = useState(product.price * amountSelected);
+  const [selectedValues, setSelectedValues] = useState([]);
+  const [subTotal, setSubtotal] = useState((product.price * amountSelected) );
 
   const { idPunto } = useSelector(
     (state) => state?.restaurantMapLocation
@@ -66,7 +68,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const handleAddToCart = () => {
     if (amountSelected !== 0) {
       SnackbarUtilities.success("Producto agregado");
-      dispatch(addProductToCart({ product, amount: amountSelected }));
+      dispatch(addProductToCart({ product, amount: amountSelected, toppings,subTotal}));
     }
   };
   const handleIncrement = () => {
@@ -83,9 +85,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   };
 
 
-  const handleChange = () => {
-    this.setState({ value: event.target.value });
-  };
+ 
 
   const handleYES = () => {
     setwithToppings(true)
@@ -94,6 +94,51 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const handleNO = () => {
     setwithToppings(false)
   };
+const changeTittle = (grupo) => {
+  
+    return grupo.replace("_", " ")
+  
+}
+
+
+const handleChangee = (e) => {
+  const selectedValue = e.target.value;
+ 
+  if (e.target.checked) {
+    const {objects} = fullToppings    
+    for (let i = 0; i < objects.length; i++){
+      for (let j = 0; j < objects[i].length; j++){
+        let topping =objects[i][j]
+        if(topping.skuItemSeleccion ===selectedValue){
+         let  precio = parseInt(topping.precioSeleccion)       
+          setToppings([...toppings, topping]); 
+          setSubtotal(subTotal + precio)
+       
+        }        
+     }
+    }
+    // Si el checkbox está marcado, agrégalo a la listalis
+    setSelectedValues([...selectedValues, selectedValue]);
+   
+   
+    
+  } else {
+    // Si el checkbox se desmarca, elimínalo de la lista
+    setSelectedValues(selectedValues.filter(value => value !== selectedValue));
+    let toppingUnselect = toppings.filter(function (topping){
+      return topping.skuItemSeleccion === selectedValue})
+    let precio = parseInt(toppingUnselect[0].precioSeleccion)  
+    setSubtotal(subTotal - precio)
+    setToppings(toppings.filter(value => value.skuItemSeleccion !== selectedValue));
+    
+    
+  }
+ 
+  //JSON.stringify(toppings)
+  
+  
+};
+
 
 
   return (
@@ -103,15 +148,17 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        
       >
-        <div className="bg-light-ivory w-[620px] rounded-[40px]  mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%]">
-          <div className="border-t-intense-orange mt-16 py-4 border-t-8">
-            <h2 className="flex-2 text-4xl text-center font-ifc-insane-rodeo-bold text-fire-red">
+      {/* <div className="bg-light-ivory w-full md:w-[620px] rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%]"> */}
+      <div className="bg-light-ivory  w-full md:max-w-screen-md rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] overflow-y-auto">
+          <div className="border-t-intense-orange mt-8 py-4 border-t-8">
+            <h2 className="flex-2 text-4xl md:text-5xl text-center font-ifc-insane-rodeo-bold text-fire-red">
               {product?.itemName}
             </h2>
           </div>
-          <div className="flex gap-10 px-20">
-            <div className="flex-1">
+          <div className="flex gap-10 px-[20px] md:px-[40px]">
+            <div className="flex-1 ">
               <header className="flex justify-center">
                 <div className="flex items-center gap-8">
                   <span className="text-intense-orange font-ifc-insane-rodeo-bold text-7xl">
@@ -209,19 +256,28 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
               </section>
             </div>
           </div>
-          <div className="flex gap-10 px-20 overflow-auto">
+          <div className="flex flex-col md:flex-row gap-10 px-20 overflow-y-auto">
+          
           {withToppings ?
-                  <div>
+                  <div className="list-none w-full  ">
+                  
                     {fullToppings?.grupos.map((grupo, index) => (
-                      <div className="sidebar-container">
-                        <SidebarMini title={grupo} key={index} />
+                     
+                      <div className="siderbar-contender text-gray-600">
+                     
+                        <SidebarMini title={changeTittle(grupo)}  />                        
 
-                        <div className="product-list-container">
-                          {fullToppings?.objects[index].map((detail, index) => (
-                            <ProductList
-                              detail={detail}
-                            />
-                          ))}
+                        <div className="overflow-y-auto h-56">
+                        
+                          {fullToppings?.objects[index].map((detail) => (                          
+                             
+                            <ToppingList                           
+                              detail={detail}  
+                              handleCheckboxChange={handleChangee}
+                              handlechecked={selectedValues.includes(detail.skuItemSeleccion)}  />                        
+                            
+                          
+                          ))} 
 
                         </div>
                       </div>
@@ -231,23 +287,41 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
 
                     )}
                   </div>
-                  : <>adsfasdfasd</>
-                }
+                  : <></>
+                } 
+          
+          
           </div>
-          <footer className="flex gap-6 px-20 pb-20">
-            <button className="w-2/5 font-bold text-chocolate-brown border-fire-red border-2 py-1">
+          
+          {/* <footer className="flex flex-col md:flex-row gap-6 md:px-20 pb-20">
+            <button className="md:w-2/5 flex flex-col items-center font-bold text-chocolate-brown border-fire-red border-2 py-1">
               <h4 className="text-xl">Subtotal:</h4>
               <span className="text-fire-red text-xl">$ {subtotal}</span>
             </button>
-            <BackgroundImage className={"w-3/5 hero-content bg-cover"} image={'/assets/button-maderado-amarillo.png'}>
+            <BackgroundImage className={"md:w-3/5 hero-content bg-cover"} image={'/assets/button-maderado-amarillo.png'}>
               <button
-                className=" text-xl font-bold text-chocolate-brown"
+                className="text-xl md:text-2xl font-bold text-chocolate-brown"
                 onClick={handleAddToCart}
               >
-                <span>Añadir al carrito</span>
+                <span className="relative z-10">Añadir al carrito</span>
+              </button>
+            </BackgroundImage>
+          </footer> */}
+          <footer className="flex flex-col md:flex-row gap-6 md:px-20 pb-5">
+            <button className="md:w-2/5 flex flex-col items-center font-bold text-chocolate-brown border-fire-red border-2 py-1">
+              <h4 className="text-xl">Subtotal:</h4>
+              <span className="text-fire-red text-xl">$ {subTotal}</span>
+            </button>
+            <BackgroundImage className={"md:w-3/5 hero-content bg-cover"} image={'/assets/button-maderado-amarillo.png'}>
+              <button
+                className="text-xl md:text-2xl font-bold text-chocolate-brown"
+                onClick={handleAddToCart}
+              >
+                <span className="relative z-10">Añadir al carrito</span>
               </button>
             </BackgroundImage>
           </footer>
+
         </div>
       </Modal>
     </>
