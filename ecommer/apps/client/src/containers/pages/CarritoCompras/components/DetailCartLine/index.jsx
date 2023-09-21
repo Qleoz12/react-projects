@@ -5,7 +5,7 @@ export const DetailCartLine = ({menuitem}) => {
   console.log(menuitem)
   return (
     <div className="font-tahoma font-bold text-sm text-black mx-4">
-      <div className="overflow-hidden h-96 overflow-y-scroll">
+      <div className="overflow-hidden h-50 overflow-y-scroll">
 
         <div className="flex mt-6  ">
           <div className="mr-4   flex  flex-col items-center relative pt-4">
@@ -20,10 +20,10 @@ export const DetailCartLine = ({menuitem}) => {
             </div>
           </div>
           <div className="flex-1 flex flex-col gap-2 leading-none">
-            <h2>{menuitem.itemName}</h2>
+            <h2>{menuitem.product.itemName}</h2>
             <h2 className="text-intense-orange">Compo</h2>
             <h2 className="text-fire-red">Descripción</h2>
-            {menuitem?.BeverageItemGroups?.map((BeverageItemGroup) => (
+            {menuitem?.product.BeverageItemGroups?.map((BeverageItemGroup) => (
             <div>
               <h3 className="">{BeverageItemGroup.name}</h3>
               {BeverageItemGroup?.beverages?.map((beverage) => (
@@ -36,7 +36,7 @@ export const DetailCartLine = ({menuitem}) => {
             
           </div>
           <div className="flex-1 text-moss-green">
-            <span>${menuitem.price}</span>
+            <span>${menuitem.product.price}</span>
           </div>
         </div>
 

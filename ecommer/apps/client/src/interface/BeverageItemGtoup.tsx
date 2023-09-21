@@ -1,9 +1,10 @@
 import BeverageItem from "./BeverageItem";
 
-interface BeverageItemGroup {
-    name: string;
-    beverages: Array<BeverageItem>
-  }
+class BeverageItemGroup {
+  constructor(public name: string, public beverages: Array<BeverageItem>) {}
+}
+
   
+
   export default BeverageItemGroup;
   

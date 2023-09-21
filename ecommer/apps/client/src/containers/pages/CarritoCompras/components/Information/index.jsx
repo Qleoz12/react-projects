@@ -61,7 +61,7 @@ export const Information = ({ setOption }) => {
     getvias();
   }, [])
 
-
+  //RODO validar que todos los campos esten llenos o mostrar mensajes de error
   const handleOrderConfirmation = async () => {
     try {
       dispatch(setLoading(true))

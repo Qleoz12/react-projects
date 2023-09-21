@@ -27,21 +27,21 @@ export const ProductItem = ({ product }) => {
     }
   }, [cart, product, open]);
 
-  const handleAddToCart = () => {
-    if (amountSelected !== 0) {
-      SnackbarUtilities.success("Producto agregado");
+  // const handleAddToCart = () => {
+  //   if (amountSelected !== 0) {
+  //     SnackbarUtilities.success("Producto agregado");
 
-      dispatch(addProductToCart({ product, amount: amountSelected }));
-    }
-  };
-  const handleIncrement = () => {
-    setAmountSelected(amountSelected + 1);
-  };
-  const handleDecrement = () => {
-    if (amountSelected > 0) {
-      setAmountSelected(amountSelected - 1);
-    }
-  };
+  //     dispatch(addProductToCart({ product, amount: amountSelected }));
+  //   }
+  // };
+  // const handleIncrement = () => {
+  //   setAmountSelected(amountSelected + 1);
+  // };
+  // const handleDecrement = () => {
+  //   if (amountSelected > 0) {
+  //     setAmountSelected(amountSelected - 1);
+  //   }
+  // };
 
   return (
     <>

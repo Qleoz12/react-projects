@@ -8,9 +8,12 @@ import { SnackbarUtilities } from "../../../../utilities";
 import { addProductToCart } from "../../../../redux/slices/menuProductSelectedCartSlice";
 import { BackgroundImage } from "../../../../components";
 import { getToppings } from "../../../../services/itemsCategoriesService"
-import { SidebarMini } from "../../../../components/SidebarMini/";
+import { SidebarMini } from "../../../../components/SidebarMini";
 import { ToppingList } from "../../../../components/ToppingList"
 // import { PinMapIcon } from "../Icons"
+import MenuItem from "../../../../interface/MenuItem"
+import BeverageItemGroup from "../../../../interface/BeverageItemGtoup";
+import BeverageItem from "../../../../interface/BeverageItem";
 
 
 
@@ -23,7 +26,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const [selections, setSelections] = useState([]);
   const [fullToppings, setFullToppings] = useState({});
   const [selectedValues, setSelectedValues] = useState([]);
-  const [subTotal, setSubtotal] = useState((product.price * amountSelected) );
+  const [subTotal, setSubtotal] = useState((product.price * amountSelected));
 
   const { idPunto } = useSelector(
     (state) => state?.restaurantMapLocation
@@ -38,7 +41,8 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
         console.log(2, response.data[0])
         const data = response.data;
         var decoupleToppings = { grupos: [], objects: [] }
-        data[0].filter(x => x.skuItemSeleccion != null)
+        data[0]
+          .filter(x => x.skuItemSeleccion != null)
           .forEach(topping => {
             if (topping.nombreGrupoSeleccion != null &&
               !decoupleToppings.grupos.includes(topping.nombreGrupoSeleccion)) {
@@ -66,7 +70,27 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const handleAddToCart = () => {
     if (amountSelected !== 0) {
       SnackbarUtilities.success("Producto agregado");
-      dispatch(addProductToCart({ product, amount: amountSelected, toppings,subTotal}));
+      const menuItem = new MenuItem();
+      menuItem.skuItem = product.skuItem
+      menuItem.itemName = product.itemName
+      menuItem.description = product.description
+      menuItem.price = product.price
+      
+      const groupedToppings = [];
+
+      Object.keys(toppings).forEach((grupo) => {
+        let beverages= toppings[grupo].map((item)=>{
+          let beverageItem =new BeverageItem()
+          beverageItem.itemName=item.descripcionProducto
+          beverageItem.price=item.precioSeleccion
+          return  beverageItem
+        })
+        groupedToppings.push(new BeverageItemGroup(grupo,beverages ));
+      });
+      menuItem.BeverageItemGroups=groupedToppings
+      
+
+      dispatch(addProductToCart({ product: menuItem, amount: amountSelected, toppings, subTotal }));
     }
   };
   const handleIncrement = () => {
@@ -83,7 +107,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   };
 
 
- 
+
 
   const handleYES = () => {
     setwithToppings(true)
@@ -92,50 +116,64 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const handleNO = () => {
     setwithToppings(false)
   };
-const changeTittle = (grupo) => {
-  
+  const changeTittle = (grupo) => {
+
     return grupo.replace("_", " ")
-  
-}
 
-
-const handleChangee = (e) => {
-  const selectedValue = e.target.value;
- 
-  if (e.target.checked) {
-    const {objects} = fullToppings    
-    for (let i = 0; i < objects.length; i++){
-      for (let j = 0; j < objects[i].length; j++){
-        let topping =objects[i][j]
-        if(topping.skuItemSeleccion ===selectedValue){
-         let  precio = parseInt(topping.precioSeleccion)       
-          setToppings([...toppings, topping]); 
-          setSubtotal(subTotal + precio)
-       
-        }        
-     }
-    }
-    // Si el checkbox está marcado, agrégalo a la listalis
-    setSelectedValues([...selectedValues, selectedValue]);
-   
-   
-    
-  } else {
-    // Si el checkbox se desmarca, elimínalo de la lista
-    setSelectedValues(selectedValues.filter(value => value !== selectedValue));
-    let toppingUnselect = toppings.filter(function (topping){
-      return topping.skuItemSeleccion === selectedValue})
-    let precio = parseInt(toppingUnselect[0].precioSeleccion)  
-    setSubtotal(subTotal - precio)
-    setToppings(toppings.filter(value => value.skuItemSeleccion !== selectedValue));
-    
-    
   }
- 
-  //JSON.stringify(toppings)
-  
-  
-};
+
+
+  const handleChangee = (grupo, e) => {
+    const selectedValue = e?.target?.value;
+
+    if (e.target.checked) {
+      const { objects } = fullToppings
+      let updatedToppings = { ...toppings }; // Copy the existing toppings object
+
+      for (let i = 0; i < objects.length; i++) {
+        for (let j = 0; j < objects[i].length; j++) {
+          let topping = objects[i][j]
+          if (topping.skuItemSeleccion === selectedValue) {
+            let precio = parseInt(topping.precioSeleccion)
+
+            // Check if the grupo exists in updatedToppings, if not, create it
+            if (!updatedToppings[grupo]) {
+              updatedToppings[grupo] = [];
+            }
+
+            // Add the topping to the corresponding grupo
+            updatedToppings[grupo].push(topping);
+
+            // setToppings([...toppings, topping]);
+            setSubtotal(subTotal + precio)
+
+            // Update the toppings state with the grouped toppings
+            setToppings(updatedToppings);
+          }
+        }
+      }
+      // Si el checkbox está marcado, agrégalo a la listalis
+      setSelectedValues([...selectedValues, selectedValue]);
+
+
+
+    } else {
+      // Si el checkbox se desmarca, elimínalo de la lista
+      setSelectedValues(selectedValues.filter(value => value !== selectedValue));
+      let toppingUnselect = toppings.filter(function (topping) {
+        return topping.skuItemSeleccion === selectedValue
+      })
+      let precio = parseInt(toppingUnselect[0].precioSeleccion)
+      setSubtotal(subTotal - precio)
+      setToppings(toppings.filter(value => value.skuItemSeleccion !== selectedValue));
+
+
+    }
+
+    //JSON.stringify(toppings)
+
+
+  };
 
 
 
@@ -146,10 +184,10 @@ const handleChangee = (e) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        
+
       >
-      {/* <div className="bg-light-ivory w-full md:w-[620px] rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%]"> */}
-      <div className="bg-light-ivory  w-full md:max-w-screen-md rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] overflow-y-auto">
+        {/* <div className="bg-light-ivory w-full md:w-[620px] rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%]"> */}
+        <div className="bg-light-ivory  w-full md:max-w-screen-md rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] overflow-y-auto">
           <div className="border-t-intense-orange mt-8 py-4 border-t-8">
             <h2 className="flex-2 text-4xl md:text-5xl text-center font-ifc-insane-rodeo-bold text-fire-red">
               {product?.itemName}
@@ -255,42 +293,42 @@ const handleChangee = (e) => {
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-10 px-20 overflow-y-auto">
-          
-          {withToppings ?
-                  <div className="list-none w-full  ">
-                  
-                    {fullToppings?.grupos.map((grupo, index) => (
-                     
-                      <div className="siderbar-contender text-gray-600">
-                     
-                        <SidebarMini title={changeTittle(grupo)}  />                        
 
-                        <div className="overflow-y-auto h-56">
-                        
-                          {fullToppings?.objects[index].map((detail) => (                          
-                             
-                            <ToppingList                           
-                              detail={detail}  
-                              handleCheckboxChange={handleChangee}
-                              handlechecked={selectedValues.includes(detail.skuItemSeleccion)}  />                        
-                            
-                          
-                          ))} 
+            {withToppings ?
+              <div className="list-none w-full  ">
 
-                        </div>
-                      </div>
+                {fullToppings?.grupos.map((grupo, index) => (
+
+                  <div className="siderbar-contender text-gray-600">
+
+                    <SidebarMini title={changeTittle(grupo)} />
+
+                    <div className="overflow-y-auto h-56">
+
+                      {fullToppings?.objects[index].map((detail) => (
+
+                        <ToppingList
+                          detail={detail}
+                          handleCheckboxChange={(e) => handleChangee(grupo, e)}
+                          handlechecked={selectedValues.includes(detail.skuItemSeleccion)} />
 
 
-                    )
+                      ))}
 
-                    )}
+                    </div>
                   </div>
-                  : <></>
-                } 
-          
-          
+
+
+                )
+
+                )}
+              </div>
+              : <></>
+            }
+
+
           </div>
-          
+
           {/* <footer className="flex flex-col md:flex-row gap-6 md:px-20 pb-20">
             <button className="md:w-2/5 flex flex-col items-center font-bold text-chocolate-brown border-fire-red border-2 py-1">
               <h4 className="text-xl">Subtotal:</h4>

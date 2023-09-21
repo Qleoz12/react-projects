@@ -1,4 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createSlice
+} from "@reduxjs/toolkit";
+import MenuItem from "../../interface/MenuItem"
 
 const menuProductSelectedCartSlice = createSlice({
   name: "menuProductSelectedCart",
@@ -10,27 +13,33 @@ const menuProductSelectedCartSlice = createSlice({
   },
   reducers: {
     addProductToCart: (state, action) => {
-      const { product, amount, toppings,subTotal } = action.payload;
+      const {
+        product,
+        amount,
+        toppings,
+        subTotal
+      } = action.payload;
 
-      const exitProduct = state.cart.find(
-        (itemProduct) => itemProduct?.id === product?.id
-      );
+      const exitProduct = state.cart.find((itemProduct) => itemProduct?.skuItem === product?.skuItem);
+      state.cart.forEach(console.log)
       if (!exitProduct) {
         const itemProduct = {
-          ...product,
+          product,
           amount,
           toppings,
           subTotal
-
         };
-        state.subtotal  = subTotal;
+        state.subtotal = subTotal;
         state.cart.push(itemProduct);
       } else {
         exitProduct.amount = amount;
       }
     },
     incrementItem: (state, action) => {
-      const { product, amount } = action.payload;
+      const {
+        product,
+        amount
+      } = action.payload;
       const exitProduct = state.cart.find((item) => item?.id === product?.id);
 
       if (exitProduct) {
@@ -38,7 +47,10 @@ const menuProductSelectedCartSlice = createSlice({
       }
     },
     decrementItem: (state, action) => {
-      const { product, amount } = action.payload;
+      const {
+        product,
+        amount
+      } = action.payload;
       const exitProduct = state.cart.find((item) => item?.id === product?.id);
 
       if (exitProduct) {
@@ -56,19 +68,22 @@ const menuProductSelectedCartSlice = createSlice({
     subtotalProduct: (state) => {
       if (state.cart.length !== 0) {
         state.subtotal = state.cart?.reduce(function (
-          accumulator,
-          currentValue
-          
-        ) {
-          return  Number(currentValue?.subTotal)+accumulator;
-        },
-        0);
+            accumulator,
+            currentValue
+
+          ) {
+            return Number(currentValue?.subTotal) + accumulator;
+          },
+          0);
       } else {
         state.subtotal = 0;
       }
     },
     addSelectedCategory: (state, action) => {
-      const { category, currentPositionSwiper } = action.payload;
+      const {
+        category,
+        currentPositionSwiper
+      } = action.payload;
       state.currentCategory = category;
       state.currentPositionSwiper = currentPositionSwiper;
     },

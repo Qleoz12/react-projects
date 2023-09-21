@@ -49,7 +49,7 @@ acompanamiento.push(toppings[i].ItemSeleccion)
         </button>
       </div>
       <div className="w-1/3">
-        <img src={product?.categoryId.image} alt="foto" />
+        <img src={product?.categoryId?.image} alt="foto" />
       </div>
 
       <div className="w-2/3 flex flex-col gap-2  mr-[3px]">

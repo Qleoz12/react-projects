@@ -10,9 +10,14 @@ export const CarritoCompras = () => {
   const [finishOrder, setFinishOrder] = useState(false);
 
   const cart = useSelector((state) => state.menuProductSelectedCart.cart);
+
+  useEffect(() => {
+    console.log(cart)
+  },[cart])
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [option]);
+
   const handleDetailCartMovile = () => {
     setActiveDetailMovile(!activeDetailMovile);
   };
