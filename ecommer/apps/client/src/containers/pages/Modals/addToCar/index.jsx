@@ -54,8 +54,6 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
           })
         console.log(3, decoupleToppings)
         setFullToppings(decoupleToppings);
-        // setToppings(decoupleToppings.objects[decoupleToppings.grupos.indexOf("ACOMPANAMIENTO")]);
-        // setDrinks(decoupleToppings.objects[decoupleToppings.grupos.indexOf("BEBIDAS_COMBOS")]);
         console.log('toppings', decoupleToppings);
         return data;
       };

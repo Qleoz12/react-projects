@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { Footer, ShoppingBag } from "../../../components";
 import { DetailCartMovile, DetailFinishOrder, Information, OrderConfirmation } from "./components";
 import { DetailCart } from "./components/DetailCart";
+import { useSelector } from 'react-redux';
 
 export const CarritoCompras = () => {
   const [option, setOption] = useState(true);
   const [activeDetailMovile, setActiveDetailMovile] = useState(false);
   const [finishOrder, setFinishOrder] = useState(false);
 
+  const cart = useSelector((state) => state.menuProductSelectedCart.cart);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [option]);
@@ -84,7 +86,7 @@ export const CarritoCompras = () => {
             </div>
           )}
           <div className="md:flex-1  hidden md:block  sticky top-24 h-min">
-            <DetailCart />
+            <DetailCart detail={cart}/>
           </div>
         </div>
         <Footer />
