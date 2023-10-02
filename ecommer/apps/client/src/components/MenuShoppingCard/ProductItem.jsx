@@ -7,28 +7,28 @@ import {
 } from "../../redux/slices/menuProductSelectedCartSlice";
 import { SnackbarUtilities } from "../../utilities";
 
-export const ProductItem = ({ product}) => {
-  
-  const {toppings} = product;
+export const ProductItem = ({ product, toppings, amount }) => {
+
+  // const {toppings} = product;
 
   let bebidas = []
   let acompanamiento = []
   let valor = 0
   for (let i = 0; i < toppings.length; i++) {
-    if(toppings[i].nombreGrupoSeleccion==="BEBIDAS_COMBOS"){
-    bebidas.push(toppings[i].ItemSeleccion)
-  }if(toppings[i].nombreGrupoSeleccion==="ACOMPANAMIENTO"){
-acompanamiento.push(toppings[i].ItemSeleccion)
+    if (toppings[i].nombreGrupoSeleccion === "BEBIDAS_COMBOS") {
+      bebidas.push(toppings[i].ItemSeleccion)
+    } if (toppings[i].nombreGrupoSeleccion === "ACOMPANAMIENTO") {
+      acompanamiento.push(toppings[i].ItemSeleccion)
+    }
+    valor += parseInt(toppings[i].precioSeleccion)
   }
-  valor+=parseInt(toppings[i].precioSeleccion)
-}
 
   const dispatch = useDispatch();
   const handleIncrement = () => {
-    dispatch(incrementItem({ amount: product?.amount + 1, product }));
+    dispatch(incrementItem({ amount: amount + 1, product }));
   };
   const handleDecrement = () => {
-    if (product?.amount - 1 === 0) {
+    if (amount - 1 === 0) {
       SnackbarUtilities.error("Se ha eliminado el producto");
     }
     dispatch(decrementItem({ amount: product?.amount - 1, product }));
@@ -40,7 +40,7 @@ acompanamiento.push(toppings[i].ItemSeleccion)
   };
 
 
-  
+
   return (
     <div className="relative flex gap-4">
       <div className="absolute right-0">
@@ -56,40 +56,33 @@ acompanamiento.push(toppings[i].ItemSeleccion)
         <h3 className="text-lg font-bold text-chocolate-brown leading-[15px] mt-[0.5px]">
           {product?.itemName}
         </h3>
-        <span className="uppercase text-xs text-intense-orange font-bold">
+        {/* <span className="uppercase text-xs text-intense-orange font-bold">
           SIN COMBO
           
-        </span>
-        <div>
-          <h4 className="font-bold text-chocolate-brown text-sm leading-[5px]">
-            Adiciones:
-          </h4>
-          <span className="text-sm text-chocolate-brown">lo que sea</span>
-        </div>
-        <div>
-          <h4 className="font-bold text-chocolate-brown text-sm leading-[5px]">
-            Acompañamiento:
-          </h4>
-          <span className="text-sm text-chocolate-brown">{acompanamiento.map((topping) =>(          
-           <div>
-         {topping}
-         </div> 
-       )
+        </span> */}
 
-       )}</span>
-        </div>
+        {product?.BeverageItemGroups?.map((BeverageItemGroup) => (
+          <div>
+            <h3 className="">{BeverageItemGroup.name}</h3>
+            {BeverageItemGroup?.beverages?.map((beverage) => (
+              <h4 className="font-normal">{beverage.itemName} {beverage.price}</h4>
+            ))}
+
+          </div>
+        ))}
+
         <div className="leading-[15px]">
-        
-        <h4 className="font-bold text-chocolate-brown text-sm leading-[5px]">
-            Bebida:
-          </h4>     
-        <span className="text-sm text-chocolate-brown">{bebidas.map((topping) =>(          
-           <div>
-         {topping}
-         </div> 
-       )
 
-       )}</span>
+          <h4 className="font-bold text-chocolate-brown text-sm leading-[5px]">
+            Bebida:
+          </h4>
+          <span className="text-sm text-chocolate-brown">{bebidas.map((topping) => (
+            <div>
+              {topping}
+            </div>
+          )
+
+          )}</span>
 
         </div>
         <div className="flex items-center gap-6">
@@ -104,7 +97,7 @@ acompanamiento.push(toppings[i].ItemSeleccion)
           </button>
         </div>
         <span className="text-moss-green font-bold"> {
-        product?.price+valor}</span>
+          product?.price + valor}</span>
       </div>
     </div>
   );

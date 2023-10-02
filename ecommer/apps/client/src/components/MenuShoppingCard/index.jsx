@@ -7,6 +7,9 @@ import { useDispatch } from "react-redux";
 import { subtotalProduct } from "../../redux/slices/menuProductSelectedCartSlice";
 import { useNavigate } from "react-router-dom";
 import { BackgroundImage } from "../BackgroundImage";
+import MenuItem  from "../../interface/MenuItem"
+import BeverageItemGroup from "../../interface/BeverageItemGtoup";
+import BeverageItem from "../../interface/BeverageItem";
 
 export const MenuShoppingCard = () => {
   const dispatch = useDispatch();
@@ -26,6 +29,13 @@ export const MenuShoppingCard = () => {
   const handlePay = () => {
     navigate("/carrito-compras/");
   };
+
+  useEffect(() => {
+    if (cart && cart.length>0 ) {
+      console.log(cart)
+    }
+  },
+    [cart])
 
   return (
     <div>
@@ -51,8 +61,8 @@ export const MenuShoppingCard = () => {
       >
         <div className="relative mx-auto max-w-5xl">
           <div className="bg-light-ivory px-10 pt-10 w-[340px] mx-auto absolute top-32 border-2 border-fire-red right-0">
-            {cart?.map((item) => (
-              <ProductItem product={item} key={item?.id} />
+            {cart?.map(({product,toppings,ammount}) => (
+              <ProductItem product={product} toppings={toppings} amount={ammount} key={product?.id} />
             ))}
 
             <footer className="flex gap-4 flex-col justify-center mb-3">
