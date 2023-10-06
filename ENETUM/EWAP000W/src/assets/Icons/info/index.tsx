@@ -1,0 +1,1 @@
+export const InfoIcon = () =><img src="https://appstac.desebizkaia.bfa/EW9NCSSE/irudiak/sedeIcoAlertBlack.svg  "></img>

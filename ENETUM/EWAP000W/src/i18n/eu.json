@@ -1,0 +1,47 @@
+{  
+    "acceso": "Sarbidea",
+    "areaPrivada": "Eremu Pribatua ",
+    "avisos": "avisos eu",
+    "ciudadania": "CIUDADANÍA",
+    "contacto" : "Harremana",
+    "favoritos": "favoritos eu",
+    "guardados": "guardados eu",
+    "idioma" : "Idioma EU",
+    "idiomaActual" : "EU",
+    "idiomaOtro" : "ES",
+    "important" : "Importante eu",
+    "menuCiudadania": "SEDE ELECTRÓNICA CIUDADANÍA EU",
+    "menuProfesional": "PROFESIONAL TRIBUTARIO EU",
+    "mis": "mis eu",
+    "no": "no eu",
+    "profesionalTributario": "PROFESIONAL TRIBUTARIO EU",
+    "textoActuando": "Honen izenean diharduela",
+    "textoPortal": "Ir al Portal EU",
+    "textoLogo": "Sede electrónica de la Diputación Foral de Bizkaia. Ir a la página principal del portal EU",
+    "salir": "Irten",
+    "ultimaConexion": "Azken konexioa",
+    "url": {
+        "bide": {
+            "catalogo" : "https://{{dominio}}/eu/izapideen-katalogoa",
+            "tramites" : "https://{{dominio}}/eu/zerga-izapideak-profesionala"
+            },
+    "avisos": "https://{{dominio}}/eu/nire-abisuak",
+    "favoritos":"https://{{dominio}}/eu/nire-gustokoenak"
+    },
+    "buscador": {
+        "tramite" : {
+            "titulo" : "IZAPIDEEN BILATZAILEA",
+            "solo-electronico" : "Soilik elektronikoa",
+            "placeholder" : "",
+            "boton" : "Bilatu",
+            "busqueda-avanzada" : "Bilatzaile aurreratua",
+            "tributario" : {
+                "h2": "Zerga-izapideak egoitza elektronikoan",
+                "a": {
+                    "url": "https://{{dominio}}/eu/izapideen-katalogoa",
+                    "text": "Joan izapideen katalogora"
+                } 
+            }            
+        }
+    }
+}

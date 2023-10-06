@@ -1,0 +1,48 @@
+{
+    "acceso": "Acceso",
+    "areaPrivada": "Área privada",
+    "avisos": "avisos",
+    "ciudadania": "CIUDADANÍA",
+    "contacto": "Contacto",
+    "favoritos": "favoritos",
+    "guardados": "guardados",
+    "idioma": "Idioma",
+    "idiomaActual": "ES",
+    "idiomaOtro": "EU",
+    "important": "importante",
+    "menuCiudadania": "SEDE ELECTRÓNICA CIUDADANÍA",
+    "menuProfesional": "PROFESIONAL TRIBUTARIO",
+    "mis": "mis",
+    "no": "no",
+    "profesionalTributario": "PROFESIONAL TRIBUTARIO",
+    "textoActuando": "Actuando en nombre de:",
+    "textoPortal": "Ir al Portal",
+    "textoLogo": "Sede electrónica de la Diputación Foral de Bizkaia. Ir a la página principal del portal",
+    "tiene": "tiene",
+    "salir": "Salir ",
+    "ultimaConexion": "Última conexión ",
+    "url": {
+        "bide": {
+            "catalogo": "https://{{dominio}}/es/catalogo-de-tramites-y-servicios",
+            "tramites": "https://{{dominio}}/es/tramites-tributarios-profesional"
+        },
+        "avisos": "https://{{dominio}}/es/mis-avisos",
+        "favoritos":"https://{{dominio}}/es/mis-favoritos"
+    },
+    "buscador": {
+        "tramite": {
+            "titulo": "Buscador de Trámites",
+            "solo-electronico": "Sólo trámites electrónicos",
+            "placeholder": "Escribe el trámite que deseas buscar",
+            "boton": "Buscar",
+            "busqueda-avanzada": "Búsqueda Avanzada",
+            "tributario": {
+                "h2": "Catálogo de Trámites Tributarios",
+                "a": {
+                    "url": "https://{{dominio}}/es/tramites-tributarios-profesional",
+                    "text": "Ir al catálogo de trámites"
+                }
+            }
+        }
+    }
+}

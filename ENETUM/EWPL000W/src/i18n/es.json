@@ -1,0 +1,46 @@
+{   
+    "endpoint": {
+        "menu": "https://{{dominio}}/EWPL000M/getopcionesmenu/actuaComoColaborador={{rol}}"
+    },
+    "acceso": "Acceso",
+    "areaPrivada": "Área privada",
+    "ciudadania": "CIUDADANÍA",
+    "contacto" : "Contacto",
+    "idioma" : "Idioma",
+    "idiomaActual" : "ES",
+    "idiomaOtro" : "EU",
+    "menuCiudadania": "SEDE ELECTRÓNICA CIUDADANÍA",
+    "menuProfesional": "PROFESIONAL TRIBUTARIO",
+    "profesionalTributario": "PROFESIONAL TRIBUTARIO",
+    "textoActuando": "Actuando en nombre de: ",
+    "textoPortal": "Ir al Portal",    
+    "textoLogo": "Sede electrónica de la Diputación Foral de Bizkaia. Ir a la página principal del portal",
+    "salir": "Salir ",
+    "ultimaConexion": "Última conexión ",
+    "pie": {
+        "chat": {
+            "title": "(Abre una nueva ventana)",
+            "url": "https://{{dominio}}/home2/join.asp?Idioma=CA",
+            "texto": "Acceso remoto"
+        },
+        "diputacion-foral": "Bizkaiko Foru Aldundia - Diputación Foral de Bizkaia",
+        "opcion": {
+            "mapa-web": {
+                "url": "https://{{dominio}}/es/mapa-web",
+                "texto": "Mapa web"
+            },
+            "aviso-legal": {
+                "url": "https://{{dominio}}/es/lege-oharrak",
+                "texto": "Avisos legales"
+            },
+            "accesibilidad": {
+                "url": "https://{{dominio}}/es/accesibilidad",
+                "texto": "Accesibilidad"
+            },
+            "cookie": {
+                "url": "https://{{dominio}}/es/cookies",
+                "texto": "Cookies"
+            }
+        } 
+    }
+}

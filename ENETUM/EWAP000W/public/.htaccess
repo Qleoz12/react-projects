@@ -1,0 +1,23 @@
+<filesMatch "\.(html|htm|json|js)$">
+  FileETag None
+  <ifModule mod_headers.c>
+     Header unset ETag
+     Header unset Pragma
+     Header unset Cache-Control
+     Header unset Last-Modified
+     Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+     Header set Pragma "no-cache"
+     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </ifModule>
+</filesMatch>
+
+RewriteEngine on
+
+# Don't rewrite files or directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rewrite logout-callback and auth-callback to index.html
+RewriteRule ^logout-callback$ index.html [L]
+RewriteRule ^auth-callback$ index.html [L]

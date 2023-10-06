@@ -1,0 +1,46 @@
+ {  
+    "endpoint": {
+        "menu": "https://{{dominio}}/EWPL000M/getopcionesmenu/actuaComoColaborador={{rol}}"
+    },
+    "acceso": "Sarbidea",
+    "areaPrivada": "Eremu Pribatua ",
+    "ciudadania": "CIUDADANÍA",
+    "contacto" : "Harremana",
+    "idioma" : "Idioma EU",
+    "idiomaActual" : "EU",
+    "idiomaOtro" : "ES",
+    "menuCiudadania": "SEDE ELECTRÓNICA CIUDADANÍA EU",
+    "menuProfesional": "PROFESIONAL TRIBUTARIO EU",
+    "profesionalTributario": "PROFESIONAL TRIBUTARIO EU",
+    "textoActuando": "Honen izenean diharduela",
+    "textoPortal": "Ir al Portal EU",
+    "textoLogo": "Sede electrónica de la Diputación Foral de Bizkaia. Ir a la página principal del portal EU",
+    "salir": "Irten",
+    "ultimaConexion": "Azken konexioa",
+    "pie": {
+        "chat": {
+            "title": "(Abre una nueva ventana)",
+            "url": "https://{{dominio}}/home2/join.asp?Idioma=EU",
+            "texto": "Acceso remoto"
+        },
+        "diputacion-foral": "Bizkaiko Foru Aldundia - Diputación Foral de Bizkaia",
+        "opcion": {
+            "mapa-web": {
+                "url": "https://{{dominio}}/eu/mapa-web",
+                "texto": "Gunearen mapa"
+            },
+            "aviso-legal": {
+                "url": "https://{{dominio}}/eu/lege-oharrak",
+                "texto": "Lege oharrak"
+            },
+            "accesibilidad": {
+                "url": "https://{{dominio}}/eu/erabilerraztasuna",
+                "texto": "Erabilerraztasuna"
+            },
+            "cookie": {
+                "url": "https://{{dominio}}/eu/cookieak",
+                "texto": "Cookieak"
+            }
+        } 
+    }    
+}
