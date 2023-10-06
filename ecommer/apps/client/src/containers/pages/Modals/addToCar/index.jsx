@@ -22,12 +22,13 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   const [amountSelected, setAmountSelected] = useState(Number(1));
   const [drinks, setDrinks] = useState();
   const [toppings, setToppings] = useState([]);
-  const [withToppings, setwithToppings] = useState(false);
+  const [withToppings, setwithToppings] = useState(true);
   const [selections, setSelections] = useState([]);
   const [fullToppings, setFullToppings] = useState({});
   const [selectedValues, setSelectedValues] = useState([0]);
   const [subTotal, setSubtotal] = useState((product.price * amountSelected));
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked,] = useState(false);
+  const [maxbyGroup, setMaxbyGroup] = useState([]);
 
   const { idPunto } = useSelector(
     (state) => state?.restaurantMapLocation
@@ -38,8 +39,9 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
       const getToppingsData = async (idPunto, skuItem) => {
         const dataToppings = { idPunto: 70, skuItem: 7 };
         const response = await getToppings(dataToppings);
-        console.log(1, response)
-        console.log(2, response.data[0])
+        // console.log(1, response)
+        // console.log(2, response.data[0])
+        setMaxbyGroup(response.indexes)
         const data = response.data;
         var decoupleToppings = { grupos: [], objects: [] }
         data[0]
@@ -69,6 +71,25 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   }, [open]);
 
   const handleAddToCart = () => {
+
+    const groupedToppings = [];
+
+    Object.keys(toppings).forEach((grupo) => {
+      let beverages = toppings[grupo].map((item) => {
+        let beverageItem = new BeverageItem()
+        beverageItem.itemName = item.ItemSeleccion
+        beverageItem.price = item.precioSeleccion
+        return beverageItem
+      })
+      groupedToppings.push(new BeverageItemGroup(grupo, beverages));
+    });
+
+    console.log(maxbyGroup)
+
+    if (toppings.length == 0 || !isValidToppings(groupedToppings, maxbyGroup)) {
+      SnackbarUtilities.error("Toppings incompletos")
+      return;
+    }
     if (amountSelected !== 0) {
 
       const menuItem = new MenuItem();
@@ -77,21 +98,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
       menuItem.description = product.description
       menuItem.price = product.price
       menuItem.id = product.id
-
-      const groupedToppings = [];
-
-      Object.keys(toppings).forEach((grupo) => {
-        let beverages = toppings[grupo].map((item) => {
-          let beverageItem = new BeverageItem()
-          beverageItem.itemName = item.ItemSeleccion
-          beverageItem.price = item.precioSeleccion
-          return beverageItem
-        })
-        groupedToppings.push(new BeverageItemGroup(grupo, beverages));
-      });
       menuItem.BeverageItemGroups = groupedToppings
-
-
       dispatch(addProductToCart({ product: menuItem, amount: amountSelected, toppings, subTotal }));
       SnackbarUtilities.success("Producto agregado");
       handleClose()
@@ -111,7 +118,16 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
   };
 
 
+  const isValidToppings = (groupedToppings, maxbyGroup) => {
+    for (const maxGroup of maxbyGroup) {
+      const matchingGroup = groupedToppings.find(group => group.name === maxGroup.nombreGrupoSeleccion);
 
+      if (!matchingGroup || matchingGroup.beverages.length != maxGroup.cantidadMaxima) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   const handleYES = () => {
     setwithToppings(true)
@@ -141,18 +157,14 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
           let topping = objects[i][j]
           if (topping.skuItemSeleccion === selectedValue) {
             let precio = parseInt(topping.precioSeleccion)
-
             // Check if the grupo exists in updatedToppings, if not, create it
             if (!updatedToppings[grupo]) {
               updatedToppings[grupo] = [];
             }
-
             // Add the topping to the corresponding grupo
             updatedToppings[grupo].push(topping);
-
             // setToppings([...toppings, topping]);
             setSubtotal(subTotal + precio)
-
             // Update the toppings state with the grouped toppings
             setToppings(updatedToppings);
           }
@@ -160,24 +172,18 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
       }
       // Si el checkbox está marcado, agrégalo a la listalis
       setSelectedValues([...selectedValues, selectedValue]);
-
-
-
     } else {
       // Si el checkbox se desmarca, elimínalo de la lista
       setSelectedValues(selectedValues.filter(value => value !== selectedValue));
-      let toppingUnselect = toppings.filter(function (topping) {
-        return topping.skuItemSeleccion === selectedValue
-      })
+      let toppingUnselect = toppings[grupo].filter(topping=> topping.skuItemSeleccion === selectedValue)
       let precio = parseInt(toppingUnselect[0].precioSeleccion)
       setSubtotal(subTotal - precio)
-      setToppings(toppings.filter(value => value.skuItemSeleccion !== selectedValue));
+      toppings[grupo]=toppings[grupo].filter(value => value.skuItemSeleccion !== selectedValue)
+      setToppings(toppings);
 
 
     }
-
     //JSON.stringify(toppings)
-
 
   };
 
@@ -190,11 +196,7 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-
       >
-
-        {/* <div className="bg-light-ivory w-full md:w-[620px] rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%]"> */}
-        {/* <div className="bg-light-ivory  w-full md:max-w-screen-md rounded-[40px] mx-auto absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] overflow-y-auto"></div> */}
         <div className="bg-light-ivory  left-0 top-0 z-[1055] h-5/6 w-full overflow-y-auto overflow-x-hidden outline-none rounded-[40px]">
           <div className="border-t-intense-orange mt-8 py-4 border-t-8">
             <h2 className="flex-2 text-4xl md:text-5xl text-center font-ifc-insane-rodeo-bold text-fire-red">
@@ -247,12 +249,12 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
                   </button>
                 </div>
               </div>
-              <div className="flex justify-between">
+              {/* <div className="flex justify-between">
                 <span className="text-chocolate-brown font-bold">
                   Adicionales
                 </span>
                 <span className="text-moss-green font-bold">+94.023</span>
-              </div>
+              </div> */}
               <section>
                 <span className=" font-bold text-chocolate-brown mt-4">
                   ¿Deseas este pedido en combo?
@@ -290,32 +292,35 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
                   <span className="font-bold text-moss-green">+$0</span>
                 </div>
               </section>
-              <section>
+              {/* <section>
                 <div className="flex justify-between">
                   <span className="font-bold text-chocolate-brown">
                     Bebida:
                   </span>
                   <span className="font-bold text-moss-green">+$0</span>
                 </div>
-              </section>
+              </section> */}
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-10 px-20 overflow-y-auto">
 
-            {withToppings ?
+            {withToppings && fullToppings ?
               <div className="list-none w-full  ">
 
-                {fullToppings?.grupos.map((grupo, index) => (
-
+                {fullToppings?.grupos?.map((grupo, index) => (
 
                   <div className="siderbar-contender text-gray-600">
-                    <div className="flex justify-between"><SidebarMini title={changeTittle(grupo)} /> <div className=" rounded bg-orange-500 text-white p-1 w-24">
-                      Obligatorio
-                    </div> </div>
+                    <div className="flex justify-between">
+                      <SidebarMini title={changeTittle(grupo)} />
+                      <div className=" rounded bg-orange-500 text-white p-1 w-24">
+                        Obligatorio
+                      </div>
+                    </div>
 
-                    <SidebarMini title={changeTittle(grupo)} />
-
-                    <span>Seleciona maximo 5</span>
+                    <span>Seleciona maximo  {maxbyGroup
+                      .filter((x) => x.nombreGrupoSeleccion === grupo)
+                      .map((filteredGroup) => filteredGroup.cantidadMaxima)
+                      .join(', ')}</span>
                     <div className="overflow-y-auto h-56">
 
                       {fullToppings?.objects[index].map((detail) => (
@@ -341,21 +346,6 @@ export const ModalAddToCar = ({ product, open, handleClose }) => {
 
 
           </div>
-
-          {/* <footer className="flex flex-col md:flex-row gap-6 md:px-20 pb-20">
-            <button className="md:w-2/5 flex flex-col items-center font-bold text-chocolate-brown border-fire-red border-2 py-1">
-              <h4 className="text-xl">Subtotal:</h4>
-              <span className="text-fire-red text-xl">$ {subtotal}</span>
-            </button>
-            <BackgroundImage className={"md:w-3/5 hero-content bg-cover"} image={'/assets/button-maderado-amarillo.png'}>
-              <button
-                className="text-xl md:text-2xl font-bold text-chocolate-brown"
-                onClick={handleAddToCart}
-              >
-                <span className="relative z-10">Añadir al carrito</span>
-              </button>
-            </BackgroundImage>
-          </footer> */}
           <footer className="flex flex-col md:flex-row gap-6 md:px-20 pb-5">
             <button className="md:w-2/5 flex flex-col items-center font-bold text-chocolate-brown border-fire-red border-2 py-1">
               <h4 className="text-xl">Subtotal:</h4>

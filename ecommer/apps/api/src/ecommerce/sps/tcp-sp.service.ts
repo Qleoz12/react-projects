@@ -12,7 +12,7 @@ export class TcpSPService {
   constructor(
     @InjectRepository(TcpcBrand)
     private repository: Repository<TcpcBrand>,
-  ) {}
+  ) { }
 
   async findRestaurants(dto: TcpRestaurantsSpDto) {
     const data = await this.repository.query(
@@ -31,10 +31,15 @@ export class TcpSPService {
       'call spcp_website_itemseleccion(?,?)',
       [dto.idPunto, dto.skuItem],
     );
+
+    const groupedData = this.groupByNombreGrupoSeleccion(data[0]);
+
+    const result = this.calculateMaxCantidad(groupedData);
     return {
       statusCode: HttpStatus.OK,
       message: 'exito',
       data: data,
+      indexes: result,
     };
   }
 
@@ -48,5 +53,30 @@ export class TcpSPService {
       message: 'exito',
       data: data[0][0],
     };
+  }
+
+  private groupByNombreGrupoSeleccion(data: any[]): Map<string, any[]> {
+    return data.reduce((acc, item) => {
+      if (item.nombreGrupoSeleccion) {
+        const key = item.nombreGrupoSeleccion;
+        acc.set(key, [...(acc.get(key) || []), item]);
+      }
+      return acc;
+    }, new Map<string, any[]>());
+  }
+
+  private calculateMaxCantidad(groupedData: Map<string, any[]>): any[] {
+    const result = [];
+
+    groupedData.forEach((group, key) => {
+      const maxCantidad = Math.max(...group.map((item) => item.cantidadMaxima));
+
+      result.push({
+        nombreGrupoSeleccion: key,
+        cantidadMaxima: maxCantidad,
+      });
+    });
+
+    return result;
   }
 }

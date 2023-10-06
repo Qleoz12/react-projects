@@ -81,7 +81,7 @@ export const CarritoCompras = () => {
                 </h3>
               </div>
               {option ? (
-                <Information setOption={setOption} />
+                <Information setOption={setOption} cart={cart} />
               ) : (
                 <OrderConfirmation
                   setOption={setOption}

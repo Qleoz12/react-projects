@@ -6,6 +6,7 @@ export const ProductItem = ({
   setOpen,
   setCurrentItem,
   setOpenDelete,
+  maxByGroup,
 }) => {
   const handleEdit = () => {
     setOpen({

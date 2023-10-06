@@ -30,6 +30,35 @@ export class TcprOrderDetailService {
     }
   }
 
+  async createFromList(dto: Array<TcprOrderDetailDto>) {
+    try {
+      const savedEntities = await Promise.all(
+        dto.map(async (item) => {
+          const { customerId, ...information } = item;
+          const valuetosave = {
+            ...information,
+            idSkuItem: information.idSkuItem,
+            customer: { customerId: customerId },
+          };
+          const savedEntity = await this.repository.save(valuetosave);
+          return savedEntity;
+        }),
+      );
+
+      return {
+        statusCode: HttpStatus.OK,
+        message: 'Orden detalle creado con exito',
+        data: savedEntities,
+      };
+    } catch (error) {
+      console.log(error);
+      return {
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        message: error?.message,
+      };
+    }
+  }
+
   async findAll() {
     try {
       const data = await this.repository.find();

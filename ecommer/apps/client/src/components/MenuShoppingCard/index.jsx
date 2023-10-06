@@ -61,8 +61,8 @@ export const MenuShoppingCard = () => {
       >
         <div className="relative mx-auto max-w-5xl">
           <div className="bg-light-ivory px-10 pt-10 w-[340px] mx-auto absolute top-32 border-2 border-fire-red right-0">
-            {cart?.map(({product,toppings,ammount}) => (
-              <ProductItem product={product} toppings={toppings} amount={ammount} key={product?.id} />
+            {cart?.map(({product,toppings,amount}) => (
+              <ProductItem product={product} toppings={toppings} amount={amount} key={product?.id} />
             ))}
 
             <footer className="flex gap-4 flex-col justify-center mb-3">

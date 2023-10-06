@@ -9,6 +9,7 @@ export class TcpcItemConverter {
     convertDataToTcpcItemDto(item: TcpcItems) {
 
         const tcpcItem = new TcpcItemDto();
+        tcpcItem.id=""+item.itemId
         tcpcItem.skuItem = item.skuItem;
         tcpcItem.itemName = item.itemName;
         tcpcItem.description = item.description;

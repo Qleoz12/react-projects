@@ -26,6 +26,10 @@ export class TcprOrderDetailDto {
   skuItemId: string;
 
   @IsOptional()
+  @IsNumber()
+  idSkuItem: number;
+
+  @IsOptional()
   @IsString()
   skuItem: string;
 

@@ -8,12 +8,12 @@ import { useDispatch } from "react-redux";
 import { setLoading } from "../../../../../redux/slices/globalCommonSlice"
 import { TcprOrderGeneralDto } from "../../../../../dtos/OrdenGeneral.dto"
 import { TcprClientDto } from "../../../../../dtos/tcpr-client.dto"
-import { saveOrdenGeneral, creaidordengeneral } from "../../../../../services/orderGeneral.service"
+import { saveOrdenGeneral, creaidordengeneral, saveOrdenDetalle } from "../../../../../services/orderGeneral.service"
 import { saveClient, getClientByEmail } from "../../../../../services/client.service"
-import {delay } from "../../../../../utilities/delay"
+import { delay } from "../../../../../utilities/delay"
 
 
-export const Information = ({ setOption }) => {
+export const Information = ({ setOption, cart }) => {
   const [status, setStatus] = useState(null);
   const [vias, setVias] = useState([]);
   const [addressData, setAddressData] = useState({
@@ -61,7 +61,7 @@ export const Information = ({ setOption }) => {
     getvias();
   }, [])
 
-  //RODO validar que todos los campos esten llenos o mostrar mensajes de error
+  //TODO validar que todos los campos esten llenos o mostrar mensajes de error
   const handleOrderConfirmation = async () => {
     try {
       dispatch(setLoading(true))
@@ -125,6 +125,32 @@ export const Information = ({ setOption }) => {
       // Save the order general
       await delay(2500);
       const result = await saveOrdenGeneral(orderData);
+      let list=[]
+      cart.map((item) => {
+        console.log(item)
+        const itemParsed = {
+          customer: clientData,
+          pointId: idPintorq.idPunto,
+          multiPointId: 0,
+          orderGeneralId: result.data.id,
+          orderNumberId: idOrdenDia,
+          idSkuItem: item.product.id, 
+          skuItem: item.product.skuItem,
+          itemName: item.product.ItemSeleccion,
+          skuItemPrincipal: "",
+          valueBaseUni: 0,
+          valueUnitary: item.product.precioSeleccion,
+          percentageDiscount: 0,
+          discountvalue: 0,
+          amount: 1,
+          valueBaseTotal: 0,
+          valueTotal: 0,
+        }
+        list.push(itemParsed)
+      })
+
+
+      const resultdetail = await saveOrdenDetalle(list);
       console.log(result);
     } catch (error) {
       console.error(error);

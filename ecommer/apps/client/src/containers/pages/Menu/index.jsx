@@ -53,7 +53,7 @@ export const Menu = () => {
 
           const response = await getItemsCategories(categoriesResponse.data[0][0].listaPrecio);
           setCategories(response.data);
-          dispatch(setCategories(response.data));
+          // dispatch(setCategories(response.data));
 
           dispatch(setLoading(false));
         }

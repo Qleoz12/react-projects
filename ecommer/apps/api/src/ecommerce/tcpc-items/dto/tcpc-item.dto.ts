@@ -9,6 +9,10 @@ import {
 export class TcpcItemDto {
   @IsNotEmpty()
   @IsString()
+  id: string;
+
+  @IsNotEmpty()
+  @IsString()
   skuItem: string;
 
   @IsNotEmpty()

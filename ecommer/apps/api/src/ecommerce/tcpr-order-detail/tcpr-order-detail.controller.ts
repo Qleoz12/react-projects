@@ -19,6 +19,11 @@ export class TcprOrderDetailController {
     return await this.service.create(dto);
   }
 
+  @Post('/list')
+  async createFromList(@Body() Listdto: Array<TcprOrderDetailDto>) {
+    return await this.service.createFromList(Listdto);
+  }
+
   @Get()
   async findAll() {
     return await this.service.findAll();

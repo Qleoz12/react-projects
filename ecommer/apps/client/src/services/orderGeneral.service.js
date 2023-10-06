@@ -9,6 +9,10 @@ export const saveOrdenGeneral = async (orden) => {
     return axios.post(`${baseUrl}`,orden);
 };
 
+export const saveOrdenDetalle = async (detalle) => {
+
+  return axios.post(`/tcpr-order-detail/list`,detalle);
+};
 export const getItemsCategoriesByListPrice = async (currentPositionUser) => {
     
     return await axios.post(`/tcp-sps`,currentPositionUser);

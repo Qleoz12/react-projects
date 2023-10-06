@@ -31,7 +31,7 @@ export const ProductItem = ({ product, toppings, amount }) => {
     if (amount - 1 === 0) {
       SnackbarUtilities.error("Se ha eliminado el producto");
     }
-    dispatch(decrementItem({ amount: product?.amount - 1, product }));
+    dispatch(decrementItem({ amount: (amount - 1), product }));
 
   };
   const handleRemove = () => {
@@ -71,33 +71,33 @@ export const ProductItem = ({ product, toppings, amount }) => {
           </div>
         ))}
 
-        <div className="leading-[15px]">
+        {/* <div className="leading-[15px]">
 
           <h4 className="font-bold text-chocolate-brown text-sm leading-[5px]">
             Bebida:
-          </h4>
-          <span className="text-sm text-chocolate-brown">{bebidas.map((topping) => (
-            <div>
-              {topping}
-            </div>
-          )
+          </h4>     
+        <span className="text-sm text-chocolate-brown">{bebidas.map((topping) =>(          
+           <div>
+         {topping}
+         </div> 
+       )
 
-          )}</span>
+       )}</span>
 
-        </div>
+        </div> */}
         <div className="flex items-center gap-6">
           <button className="w-4" onClick={handleIncrement}>
             <AdditionIcon />
           </button>
           <span className="text-chocolate-brown font-bold ">
-            {product?.amount}
+            {amount}
           </span>
           <button className="w-4" onClick={handleDecrement}>
             <SubstractIcon />
           </button>
         </div>
         <span className="text-moss-green font-bold"> {
-          product?.price + valor}</span>
+        product?.price+valor}</span>
       </div>
     </div>
   );
