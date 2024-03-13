@@ -7970,18 +7970,31 @@ img {
     clear: both
 }
 
+.sedeMenuOpcionesPie {
+    background-color: #f4f4ef;
+    height: 4.5rem;
+    position: relative;
+    padding-left: calc((100% - 1200px)/2);
+    clear: both
+}
+
 .sedeBodyGeneral footer ul.sedeOpcionesPie, .sedeBodyGeneral footer nav.sedeNavSinOpciones {
     background-color: #f4f4ef;
     height: 4.5rem
 }
 
-.sedeBodyGeneral footer ul.sedeOpcionesPie {
+footer ul.sedeOpcionesPie{
+    background-color: #f4f4ef;
+    height: 4.5rem
+}
+
+.sedeBodyGeneral footer ul.sedeOpcionesPie,footer ul.sedeOpcionesPie {
     position: absolute;
     right: calc((100% - 1200px)/2);
     top: 0px
 }
 
-.sedeBodyGeneral footer ul.sedeOpcionesPie li {
+.sedeBodyGeneral footer ul.sedeOpcionesPie li,footer ul.sedeOpcionesPie li {
     display: inline-block;
     height: 4.5rem;
     line-height: 4.5rem
@@ -8018,6 +8031,12 @@ img {
 }
 
 .sedeBodyGeneral footer .sedeCopy {
+    height: 4.5rem;
+    line-height: 4.5rem;
+    display: inline-block
+}
+
+.sedeCopy {
     height: 4.5rem;
     line-height: 4.5rem;
     display: inline-block
@@ -16920,6 +16939,10 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
     .sedeBodyGeneral footer .sedeOpcionesPie>ul {
         text-align: center
     }
+    
+    .sedeOpcionesPie>ul {
+        text-align: center
+    }
 
     .sedeBodyGeneral .sedeMapaOn ul.sedeMapaWeb li {
         text-align: left
@@ -17237,7 +17260,18 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
         height: auto
     }
 
+    .sedeMenuOpcionesPie {
+        height: auto
+    }
+
     .sedeBodyGeneral .sedeOpcionesPie {
+        position: static !important;
+        text-align: center;
+        margin: 2px auto;
+        height: auto !important
+    }
+
+    .sedeOpcionesPie {
         position: static !important;
         text-align: center;
         margin: 2px auto;
@@ -17249,7 +17283,20 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
         line-height: 2rem
     }
 
+    ul.sedeOpcionesPie li {
+        height: 2rem;
+        line-height: 2rem
+    }
+
     .sedeBodyGeneral footer .sedeCopy {
+        display: block;
+        height: 2rem;
+        line-height: 2rem;
+        text-align: center;
+        margin: 2px auto
+    }
+
+    .sedeCopy {
         display: block;
         height: 2rem;
         line-height: 2rem;
@@ -17350,6 +17397,10 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
         display: block
     }
 
+    .sedeOpcionesPie>ul li.sedeIdiomaPie {
+        display: block
+    }
+
     .sedeBodyGeneral .sedeContenidoPestana {
         padding-left: 2px !important;
         padding-right: 2px !important
@@ -17417,6 +17468,11 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
         padding: 2px 18%;
         line-height: 1rem
     }
+
+    .sedeCopy {
+        padding: 2px 18%;
+        line-height: 1rem
+    }
 }
 
 @media only screen and (min-width: 30.0625em)and (max-width: 59.9375em) {
@@ -17450,6 +17506,10 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
     .sedeBodyGeneral footer .sedeOpcionesPie>ul .sedeMapaWeb {
         text-align: left
     }
+
+    .sedeOpcionesPie>ul .sedeMapaWeb {
+        text-align: left
+    }
 }
 
 @media only screen and (min-width: 60em) {
@@ -17479,11 +17539,20 @@ body:last-child .sedeNumPendientes, x:-moz-any-link {
         padding-right: 1% !important
     }
 
+    .sedeMenuOpcionesPie {
+        padding-left: 1% !important;
+        padding-right: 1% !important
+    }
+
     .sedeBodyGeneral .sedeCajaBaseInicio {
         height: auto
     }
 
     .sedeBodyGeneral footer ul.sedeOpcionesPie {
+        right: 1.1%
+    }
+
+    ul.sedeOpcionesPie {
         right: 1.1%
     }
 
