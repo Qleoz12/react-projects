@@ -863,15 +863,12 @@ tr.sedeDifuminado td:after {
 /*-------------------------
 2.2 Menu Principal */
 .sedeBodyGeneral .sedeMenuPpal {
-	position: absolute;
-	bottom: 0px;
-	background-color: #000;
-	height: 3.5rem !important;
-	width: 100%;
-	margin: 0px;
-	/*10px;*/
-
-	font-size: 0.8125rem;
+	display: flex;
+    background-color: #000;
+    height: 3.5rem !important;
+    width: 100%;
+    margin: 0;
+    font-size: .8125rem;
 	text-align: right;
 
 	// padding: 0px calc((100% - 1200px) / 2);
